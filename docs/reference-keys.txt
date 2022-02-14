@@ -1,3 +1,4 @@
+tab:skimr
 setup
 grundfähigkeiten
 dateien-speichern-und-verwalten
@@ -16,8 +17,6 @@ was-ist-guter-code
 datentypen
 listen-faktoren-und-data-frames
 tibbles
-a-caucus-race-and-a-long-tale
-tab:skimr
 daten-bereinigen-tidy-data
 tidyr
 tibbles-1
