@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Daten importieren | Data Literacy Test</title>
+  <meta name="description" content="Chapter 4 Daten importieren | Data Literacy Test" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Daten importieren | Data Literacy Test" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Daten importieren | Data Literacy Test" />
+  
+  
+  
+
+<meta name="author" content="Julia Kouassi" />
+
+
+<meta name="date" content="2022-02-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="daten-bereinigen-tidy-data.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Test_Data </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setup</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#grundfähigkeiten"><i class="fa fa-check"></i><b>1.1</b> Grundfähigkeiten</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#dateien-speichern-und-verwalten"><i class="fa fa-check"></i><b>1.1.1</b> Dateien speichern und verwalten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lokale-installation"><i class="fa fa-check"></i><b>1.2</b> Lokale Installation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#quellen-und-literatur"><i class="fa fa-check"></i><b>1.3</b> Quellen und Literatur</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installation-von-programmbibliotheken"><i class="fa fa-check"></i><b>1.4</b> Installation von Programmbibliotheken</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#grundregeln-markdown"><i class="fa fa-check"></i><b>1.5</b> Grundregeln Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html"><i class="fa fa-check"></i><b>2</b> Grundlegende Funktionen</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#grundfunktionen-in-r"><i class="fa fa-check"></i><b>2.1</b> Grundfunktionen in R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#daten-sichern"><i class="fa fa-check"></i><b>2.1.1</b> <strong>Daten sichern</strong></a></li>
+<li class="chapter" data-level="2.1.2" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#grundrechenarten"><i class="fa fa-check"></i><b>2.1.2</b> Grundrechenarten</a></li>
+<li class="chapter" data-level="2.1.3" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#zuweisungen-und-variablen"><i class="fa fa-check"></i><b>2.1.3</b> Zuweisungen und Variablen</a></li>
+<li class="chapter" data-level="2.1.4" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#was-ist-guter-code"><i class="fa fa-check"></i><b>2.1.4</b> Was ist “guter” Code?</a></li>
+<li class="chapter" data-level="2.1.5" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#datentypen"><i class="fa fa-check"></i><b>2.1.5</b> Datentypen</a></li>
+<li class="chapter" data-level="2.1.6" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#listen-faktoren-und-data-frames"><i class="fa fa-check"></i><b>2.1.6</b> <strong>Listen, Faktoren und Data Frames</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html"><i class="fa fa-check"></i><b>3</b> Daten bereinigen (tidy data)</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html#tidyr"><i class="fa fa-check"></i><b>3.0.1</b> tidyr</a></li>
+<li class="chapter" data-level="3.0.2" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html#tibbles-1"><i class="fa fa-check"></i><b>3.0.2</b> Tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="daten-importieren.html"><a href="daten-importieren.html"><i class="fa fa-check"></i><b>4</b> Daten importieren</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="daten-importieren.html"><a href="daten-importieren.html#datenimport"><i class="fa fa-check"></i><b>4.1</b> Datenimport</a></li>
+<li class="chapter" data-level="4.2" data-path="daten-importieren.html"><a href="daten-importieren.html#übersicht-über-daten"><i class="fa fa-check"></i><b>4.2</b> Übersicht über Daten</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Literacy Test</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="daten-importieren" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Daten importieren</h1>
+<p>Wir verwenden den Syntax aus dem tidyverse, d.h. die Kernfunktionen sind
+Verben, die mit einer Pipe verbunden werden. Sehr gute Anleitungen zum
+Beispieldatensatz von StarWars gibt es
+<a href="https://dplyr.tidyverse.org/articles/dplyr.html">hier</a> und als
+<a href="https://bookdown.org/joone/ComputationalMethods/datahandlingintro.html">Tutorial</a>,
+<a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf">Cheatsheet data
+import</a>
+(PDF).</p>
+<div id="datenimport" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Datenimport</h2>
+<p>R kann viele unterschiedlichen Datenquellen verarbeiten (Menü &gt; File &gt;
+Import Dataset). Die meisten unserer Daten werden wir entweder aus
+Programmpaketen verwenden oder selbst einlesen.</p>
+<p><strong>Daten aus Programmpaketen</strong></p>
+<p>Viele Programmbibliotheken haben bereits Datensätze hinterlegt, die sich
+direkt aufrufen lassen. Bekannt sind mtcars und starwars, die im
+tidyverse Paket hinterlegt sind.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="daten-importieren.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Übersicht über Standard-Datensets</span></span>
+<span id="cb1-2"><a href="daten-importieren.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">help =</span> <span class="st">&quot;datasets&quot;</span>)</span>
+<span id="cb1-3"><a href="daten-importieren.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="daten-importieren.html#cb1-4" aria-hidden="true" tabindex="-1"></a>??mtcars</span></code></pre></div>
+<pre><code>## starting httpd help server ... done</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="daten-importieren.html#cb3-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="daten-importieren.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diese Daten werden häufig für Erklärungen verwendet </span></span>
+<span id="cb5-2"><a href="daten-importieren.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="daten-importieren.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.1     v dplyr   1.0.6
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="daten-importieren.html#cb16-1" aria-hidden="true" tabindex="-1"></a>??starwars</span>
+<span id="cb16-2"><a href="daten-importieren.html#cb16-2" aria-hidden="true" tabindex="-1"></a>starwars</span></code></pre></div>
+<pre><code>## # A tibble: 87 x 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke Sk~    172    77 blond      fair       blue            19   male  mascu~
+##  2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu~
+##  3 R2-D2        96    32 &lt;NA&gt;       white, bl~ red             33   none  mascu~
+##  4 Darth V~    202   136 none       white      yellow          41.9 male  mascu~
+##  5 Leia Or~    150    49 brown      light      brown           19   fema~ femin~
+##  6 Owen La~    178   120 brown, gr~ light      blue            52   male  mascu~
+##  7 Beru Wh~    165    75 brown      light      blue            47   fema~ femin~
+##  8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu~
+##  9 Biggs D~    183    84 black      light      brown           24   male  mascu~
+## 10 Obi-Wan~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~
+## # ... with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p><strong>Daten lokal importieren</strong></p>
+<p>RStudio bietet eine bequeme Import-Funktion sowohl für Textdaten (CSV)
+als auch bereits vorhandene Datenstrukturen anderer Programme (EXCEL,
+SPSS, etc.). File &gt; Import Dataset. Die Funktion eignet sich dann immer
+besonders gut, wenn die Daten weiterhin lokal bearbeitet werden.</p>
+<p><strong>Daten online einlesen</strong></p>
+<p>Am einfachsten lassen sich Daten direkt über eine URL einlesen. Dafür
+müssen die Daten idealerweise im CSV-Format vorliegen. Das ist eine
+einfache Textdatei, in der die erste Zeile die Namen der Spalten
+definiert und jede weitere Zeile einen Datensatz definiert. CSV-Daten
+sind in der Regel mit einem Komma getrennt und haben keine Leerzeichen.</p>
+<p>Unser Datensatz
+“<a href="https://github.com/hdm-crpr/226308b_Data_Literacy/blob/main/data/students/students.csv">students</a>”
+liegt auf Github, beachten Sie hierzu das
+<a href="https://github.com/hdm-crpr/226308b_Data_Literacy/blob/main/data/students/readme.md">Codebuch</a>,
+das den Datensatz erklärt.</p>
+<p>Wir verwenden den Befehl readr() um die CSV-Datei zu importieren und als
+s zu bezeichnen. Der Datensatz ist bereits im tidy-Format angelegt, d.h.
+Spalte entspricht einer Variable und jede Zeile einer Beobachtung.
+Lesehinweis: von links nach rechts: der Datensatz eines Falls, z.B.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="daten-importieren.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb18-2"><a href="daten-importieren.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="daten-importieren.html#cb18-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   id = col_double(),
+##   name = col_double(),
+##   name_first = col_character(),
+##   sex = col_double(),
+##   crpr = col_double(),
+##   height = col_double(),
+##   weight = col_double(),
+##   age = col_double(),
+##   age_real = col_double(),
+##   smoke = col_double(),
+##   phone = col_double(),
+##   tatoo = col_double(),
+##   eyes = col_double(),
+##   hair = col_double(),
+##   location = col_character(),
+##   county = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="daten-importieren.html#cb20-1" aria-hidden="true" tabindex="-1"></a>s</span></code></pre></div>
+<pre><code>## # A tibble: 38 x 16
+##       id  name name_first   sex  crpr height weight   age age_real smoke phone
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     1     1 Charlotte      1     1    167     57     2       21     1     1
+##  2     2     2 Jana           1     1    165     55     4       26     1     2
+##  3     3     3 Lena           1     1    175     65     2       22     1     1
+##  4     4     4 Serena         1     2    172     59     2       21     1     1
+##  5     5     5 Anna           1     2    163     52     1       18     1     2
+##  6     6     6 Ruth           1     2    177     63     2       20     1     2
+##  7     7     7 Maria          1     2    172     64     2       20     1     1
+##  8     8     8 Eva            1     1    169     59     4       25     1     2
+##  9     9     9 Karl           2     1    184     82     4       26     2     2
+## 10    10    10 Ahmed          2     2    174     70     3       23     2     2
+## # ... with 28 more rows, and 5 more variables: tatoo &lt;dbl&gt;, eyes &lt;dbl&gt;,
+## #   hair &lt;dbl&gt;, location &lt;chr&gt;, county &lt;chr&gt;</code></pre>
+</div>
+<div id="übersicht-über-daten" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Übersicht über Daten</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="daten-importieren.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prüft, ob der Datensatz ein tibble ist (jede Zeile eine Beobachtung)</span></span>
+<span id="cb22-2"><a href="daten-importieren.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is_tibble</span>(s)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="daten-importieren.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># liefert die Tabellenübersicht in RStudio</span></span>
+<span id="cb24-2"><a href="daten-importieren.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(s)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="daten-importieren.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># liefert eine Zusammenfassung des Datensatzes</span></span>
+<span id="cb25-2"><a href="daten-importieren.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(s)</span></code></pre></div>
+<pre><code>## Rows: 38
+## Columns: 16
+## $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ~
+## $ name       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ~
+## $ name_first &lt;chr&gt; &quot;Charlotte&quot;, &quot;Jana&quot;, &quot;Lena&quot;, &quot;Serena&quot;, &quot;Anna&quot;, &quot;Ruth&quot;, &quot;Mar~
+## $ sex        &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 2, 3, 1, 3, 1,~
+## $ crpr       &lt;dbl&gt; 1, 1, 1, 2, 2, 2, 2, 1, 1, 2, 1, 2, 1, 1, 2, 2, 1, 1, 1, 1,~
+## $ height     &lt;dbl&gt; 167, 165, 175, 172, 163, 177, 172, 169, 184, 174, 188, 168,~
+## $ weight     &lt;dbl&gt; 57, 55, 65, 59, 52, 63, 64, 59, 82, 70, 78, 62, 59, 57, 58,~
+## $ age        &lt;dbl&gt; 2, 4, 2, 2, 1, 2, 2, 4, 4, 3, 1, 2, 3, 2, 1, 3, 4, 1, 1, 1,~
+## $ age_real   &lt;dbl&gt; 21, 26, 22, 21, 18, 20, 20, 25, 26, 23, 19, 20, 23, 21, 18,~
+## $ smoke      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1,~
+## $ phone      &lt;dbl&gt; 1, 2, 1, 1, 2, 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 2,~
+## $ tatoo      &lt;dbl&gt; 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2,~
+## $ eyes       &lt;dbl&gt; 4, 2, 3, 1, 4, 3, 3, 4, 3, 3, 3, 3, 2, 2, 3, 3, 1, 4, 3, 2,~
+## $ hair       &lt;dbl&gt; 2, 3, 3, 4, 4, 2, 4, 4, 4, 4, 3, 3, 4, 1, 2, 3, 4, 4, 4, 3,~
+## $ location   &lt;chr&gt; &quot;Stuttgart&quot;, &quot;Ludwigsburg&quot;, &quot;Esslingen&quot;, &quot;Stuttgart&quot;, &quot;Kemp~
+## $ county     &lt;chr&gt; &quot;BW&quot;, &quot;BW&quot;, &quot;BW&quot;, &quot;BW&quot;, &quot;BAY&quot;, &quot;RP&quot;, &quot;BW&quot;, &quot;BW&quot;, &quot;BW&quot;, &quot;BW&quot;~</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="daten-importieren.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Als Alternative lässt sich skimr einsetzen</span></span>
+<span id="cb27-2"><a href="daten-importieren.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code></pre></div>
+<pre><code>## Warning: package &#39;skimr&#39; was built under R version 3.6.3</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="daten-importieren.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(s)</span></code></pre></div>
+<table>
+<caption><span id="tab:skimr">Table 4.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">s</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">38</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">16</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">13</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">name_first</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">0</td>
+<td align="right">37</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">location</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">12</td>
+<td align="right">0</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">county</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">6</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">id</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">19.50</td>
+<td align="right">11.11</td>
+<td align="right">1</td>
+<td align="right">10.25</td>
+<td align="right">19.5</td>
+<td align="right">28.75</td>
+<td align="right">38</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">name</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">19.50</td>
+<td align="right">11.11</td>
+<td align="right">1</td>
+<td align="right">10.25</td>
+<td align="right">19.5</td>
+<td align="right">28.75</td>
+<td align="right">38</td>
+<td align="left">▇▇▇▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">sex</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.32</td>
+<td align="right">0.62</td>
+<td align="right">1</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="right">1.00</td>
+<td align="right">3</td>
+<td align="left">▇▁▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">crpr</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.39</td>
+<td align="right">0.50</td>
+<td align="right">1</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="right">2.00</td>
+<td align="right">2</td>
+<td align="left">▇▁▁▁▅</td>
+</tr>
+<tr class="odd">
+<td align="left">height</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">170.45</td>
+<td align="right">8.17</td>
+<td align="right">159</td>
+<td align="right">163.25</td>
+<td align="right">169.0</td>
+<td align="right">175.75</td>
+<td align="right">189</td>
+<td align="left">▇▅▆▂▂</td>
+</tr>
+<tr class="even">
+<td align="left">weight</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">60.24</td>
+<td align="right">8.48</td>
+<td align="right">48</td>
+<td align="right">54.00</td>
+<td align="right">59.0</td>
+<td align="right">64.00</td>
+<td align="right">83</td>
+<td align="left">▇▇▃▁▂</td>
+</tr>
+<tr class="odd">
+<td align="left">age</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.24</td>
+<td align="right">1.13</td>
+<td align="right">1</td>
+<td align="right">1.00</td>
+<td align="right">2.0</td>
+<td align="right">3.00</td>
+<td align="right">4</td>
+<td align="left">▇▇▁▃▅</td>
+</tr>
+<tr class="even">
+<td align="left">age_real</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">21.26</td>
+<td align="right">2.80</td>
+<td align="right">17</td>
+<td align="right">19.00</td>
+<td align="right">21.0</td>
+<td align="right">23.00</td>
+<td align="right">27</td>
+<td align="left">▇▇▃▂▂</td>
+</tr>
+<tr class="odd">
+<td align="left">smoke</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.24</td>
+<td align="right">0.43</td>
+<td align="right">1</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="right">1.00</td>
+<td align="right">2</td>
+<td align="left">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">phone</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.50</td>
+<td align="right">0.51</td>
+<td align="right">1</td>
+<td align="right">1.00</td>
+<td align="right">1.5</td>
+<td align="right">2.00</td>
+<td align="right">2</td>
+<td align="left">▇▁▁▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">tatoo</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.24</td>
+<td align="right">0.43</td>
+<td align="right">1</td>
+<td align="right">1.00</td>
+<td align="right">1.0</td>
+<td align="right">1.00</td>
+<td align="right">2</td>
+<td align="left">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">eyes</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.74</td>
+<td align="right">0.95</td>
+<td align="right">1</td>
+<td align="right">2.00</td>
+<td align="right">3.0</td>
+<td align="right">3.00</td>
+<td align="right">4</td>
+<td align="left">▂▆▁▇▅</td>
+</tr>
+<tr class="odd">
+<td align="left">hair</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.26</td>
+<td align="right">0.89</td>
+<td align="right">1</td>
+<td align="right">3.00</td>
+<td align="right">3.5</td>
+<td align="right">4.00</td>
+<td align="right">4</td>
+<td align="left">▁▂▁▅▇</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="daten-bereinigen-tidy-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/juliakouassi/test_data/edit/master/04-race.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/juliakouassi/test_data/blob/master/04-race.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

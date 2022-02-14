@@ -1,55 +1,101 @@
-# Daten bereinigen (tidy data)
+# Daten importieren
 
-Eine wichtige Funktion ist es, Daten zu bereinigen. Das Grundprinzip
-dafür ist, dass jede Zeile eine Beobachtung/ein Fall ist und jede Spalte
-eine Variable abbildet. Was sich einfach anhört ist in der Praxis leider
-nicht der Fall. Das Paket
+Wir verwenden den Syntax aus dem tidyverse, d.h. die Kernfunktionen sind
+Verben, die mit einer Pipe verbunden werden. Sehr gute Anleitungen zum
+Beispieldatensatz von StarWars gibt es
+[hier](https://dplyr.tidyverse.org/articles/dplyr.html) und als
+[Tutorial](https://bookdown.org/joone/ComputationalMethods/datahandlingintro.html),
+[Cheatsheet data
+import](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf)
+(PDF).
 
-**Fehlende Werte**
+## Datenimport
 
-Fehlende Werte beschreibt R mit NA (non available oder non-assigned).
-Berechnungen können durch fehlende Werte verfälscht oder nicht
-ausgeführt werden. Doch dafür gibt es Lösungen.
+R kann viele unterschiedlichen Datenquellen verarbeiten (Menü \> File \>
+Import Dataset). Die meisten unserer Daten werden wir entweder aus
+Programmpaketen verwenden oder selbst einlesen.
 
-```{r Fehlnde Werte}
+**Daten aus Programmpaketen**
 
-# in diesem Beispiel haben wir unvollständige Werte in unserem Datensatz
-# Diese sind mit NA codiert und werden so auch im tibble übernommen
-age <- c(19,NA,25,31)
-weight <- c(50,52,NA,76)
-height <- c(162,168,177,NA)
-name <- c("Maja","Ines","David","Jerome")
+Viele Programmbibliotheken haben bereits Datensätze hinterlegt, die sich
+direkt aufrufen lassen. Bekannt sind mtcars und starwars, die im
+tidyverse Paket hinterlegt sind.
 
-students2 <- data.frame(name, age, weight, height)
-students2
-s2 <- as_tibble(students2)
-s2
+```{r Daten aus Programmpaketen}
 
-# Berechnung Mittelwerte
-# Bei der Berechnung werden die fehlenden Werte als NA bereits herausgerechnet
-height <- mean(s2$height)
-height == sum(162,168,177)/3 # beachte, dass durch 3 geteilt wird!
+# Übersicht über Standard-Datensets
+library(help = "datasets")
 
+??mtcars
+mtcars
 
-# Sicherer ist es, die fehlenden Werte zu entfernen oder zu unterdrücken. 
+# Diese Daten werden häufig für Erklärungen verwendet 
 
-mean(s2$height,na.rm = TRUE)
-
+library(tidyverse)
+??starwars
+starwars
 
 ```
 
-### tidyr
+**Daten lokal importieren**
 
-tidyr ist ein umfangreiches Paket zur Datenbereinigung. Es wird vor
-allem dafür eingesetzt, Datenstrukturen zu verändern. Dies werden wir
-nur am Rande verwenden.
+RStudio bietet eine bequeme Import-Funktion sowohl für Textdaten (CSV)
+als auch bereits vorhandene Datenstrukturen anderer Programme (EXCEL,
+SPSS, etc.). File \> Import Dataset. Die Funktion eignet sich dann immer
+besonders gut, wenn die Daten weiterhin lokal bearbeitet werden.
 
-### Tibbles
+**Daten online einlesen**
 
-Das Ziel einer guten Datenanalyse ist es, ein Tibble zu erstellen, also
-einen einfachen Datenframe, in dem jede Zeile eine Beobachtung und jede
-Spalte eine Variable darstellt. Das geht prinzipiell mit allen Daten.
-Manchmal müssen dafür die Rohdaten verändert werden. Dazu verwenden wir
-das Paket tidyR, [Cheatsheet
-tidyR](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
-(PDF)
+Am einfachsten lassen sich Daten direkt über eine URL einlesen. Dafür
+müssen die Daten idealerweise im CSV-Format vorliegen. Das ist eine
+einfache Textdatei, in der die erste Zeile die Namen der Spalten
+definiert und jede weitere Zeile einen Datensatz definiert. CSV-Daten
+sind in der Regel mit einem Komma getrennt und haben keine Leerzeichen.
+
+Unser Datensatz
+"[students](https://github.com/hdm-crpr/226308b_Data_Literacy/blob/main/data/students/students.csv)"
+liegt auf Github, beachten Sie hierzu das
+[Codebuch](https://github.com/hdm-crpr/226308b_Data_Literacy/blob/main/data/students/readme.md),
+das den Datensatz erklärt.
+
+Wir verwenden den Befehl readr() um die CSV-Datei zu importieren und als
+s zu bezeichnen. Der Datensatz ist bereits im tidy-Format angelegt, d.h.
+Spalte entspricht einer Variable und jede Zeile einer Beobachtung.
+Lesehinweis: von links nach rechts: der Datensatz eines Falls, z.B.
+
+```{r Datensatz aus github einlesen}
+
+library(readr)
+
+s <- read_csv("https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv")
+
+s
+
+```
+
+## Übersicht über Daten
+
+```{r is_tibble}
+# prüft, ob der Datensatz ein tibble ist (jede Zeile eine Beobachtung)
+is_tibble(s)
+
+```
+
+```{r view}
+# liefert die Tabellenübersicht in RStudio
+view(s)
+```
+
+```{r glimpse}
+
+# liefert eine Zusammenfassung des Datensatzes
+glimpse(s)
+```
+
+```{r skimr}
+
+# Als Alternative lässt sich skimr einsetzen
+library(skimr)
+skim(s)
+
+```

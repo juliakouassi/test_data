@@ -17,3 +17,10 @@ datentypen
 listen-faktoren-und-data-frames
 tibbles
 a-caucus-race-and-a-long-tale
+tab:skimr
+daten-bereinigen-tidy-data
+tidyr
+tibbles-1
+daten-importieren
+datenimport
+übersicht-über-daten
