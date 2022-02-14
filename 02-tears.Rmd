@@ -1,2 +1,243 @@
-# The pool of tears
+# Grundlegende Funktionen
+
+Die **Welt von R** besteht aus Objekten, Funktionen und Argumenten. Das
+ist ähnlich wie bei der Grammatik mit Objekten, Verben und Adverben.
+Prinzipiell werden alle Daten als **Objekte** behandelt, die durch
+**Funktionen**, also verbalisierte Befehle verändert werden können und
+sich mit **Argumenten** präziser beschrieben lassen.
+
+Ergebnisse werden bei R entweder in der Konsole als Code-Ausgabe oder im
+Code-Chunk angezeigt. In der Konsole wird jedem ausgeführten Befehl die
+[1] vorangestellt. Das kann verwirrend sein, wenn mehrere Befehle
+ausgeführt werden. Deshalb empfiehlt es sich, mehrere Funktionen
+zusammenzufassen oder im Chunk auszuführen.
+
+## Grundfunktionen in R
+
+#### Working Directory
+
+In der Working Directory, dem Arbeitsverzeichnis, werden automatisch die
+Dateien gespeichert. Es empfiehlt sich, das Arbeitsverzeichnis der
+Aufgabe entsprechend anzulegen und dort auch die Datenquellen abzulegen.
+
+**Projekte**
+
+Projekte speichern die Working Directory, die daran vorhandenen Dateien
+sowie offene Arbeitsprozesse. Dies eignet sich besonders für
+umfangreichere Projekte.
+
+### **Daten sichern**
+
+Wir arbeiten in der Regel mit Markdown-Dokumente, d.h. der Code ist
+direkt ins Dokument eingebettet. Manchmal ist es aber notwendig,
+bestimmte Daten in einem anderen Format zu sichern. Dazu lassen sich
+Daten speichern.
+
+```{r Dateien sichern}
+
+```
+
+### Grundrechenarten
+
+Mit R können alle Grundrechenarten ausgeführt werden und nach Regeln
+verknüpft werden, [Cheatsheet
+base-r](https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf)
+(PDF)
+
+```{r Grundrechenarten}
+
+# Addition
+1+2
+
+# Substraktion
+15-3
+
+# Multiplikation
+2*3
+
+# Division
+64/8
+
+# Verknüpfung einzelner Befehle (Klammerregeln beachten)
+(2+4) * (2) / 3
+```
+
+### Zuweisungen und Variablen
+
+Prinzipiell können Variablen nicht nur eine natürliche Zahl, sondern
+auch Text oder anderen Datentypen umfassen. Allerdings lassen sich
+unterschiedliche Datentypen nicht miteinander verarbeiten, z.B. lässt
+sich eine Zahl nicht durch einen Text teilen.
+
+**Objekte** lassen sich durch den Zuweisungsbefehl \<- erstellen. Das
+bedeutet, dass einem Objekt ein bestimmter Wert zugeordnet wird. Das
+können natürliche Zahlen oder Texte sein. Objekte wiederum lassen sich
+direkt aufrufen oder weiter mit Funktionen verarbeiten. Funktionen
+funktionieren wie Verben, die einem Objekt sagen, was sie tun sollen.
+
+```{r Zuweisungen}
+
+# Text muss immer in Anführungszeichen als Objekt verwendet werden
+alter <- 21
+name <- "Paul"
+
+# Einzelne Objekte
+alter
+name
+
+# Fehler beim Versuch, eine Funktion auszuführen
+# name/alter
+```
+
+### Was ist "guter" Code?
+
+Ein paar Grundregeln helfen, sich in R zurechtzufinden.
+
+1.  **Erst denken, dann coden**: Zunächst über das Problem, das sie
+    lösen wollen, nachdenken. Manchmal hilft dazu eine Skizze, um
+    Abhängigkeiten und Schritte zu klären.
+2.  **Zerlegen** Sie das Problem in überschaubare Schritte. Dann wird
+    jedes Problem meist einfacher. Vor allem lässt sich jeder Schritt
+    zurückverfolgen.
+3.  **Code annotieren**: guter Code ist annotiert, d.h. es ist jederzeit
+    für die Autoren aber auch für Dritte nachvollziehbar, welche
+    Codeschritte gemacht wurden. Diese Annotation findet direkt im Chunk
+    mit der Raute \# statt.
+4.  **Eindeutige Bezeichnungen** für Objekte: Objekte sollten immer
+    eindeutig sein. Bewährt haben sich **Unter_striche**, um Objekte zu
+    präzisieren. Vermeiden Sie Leerzeichen bei der Bezeichnung von
+    Variablen. Lange Namen vermeiden und ggf. eine Annotation festlegen.
+5.  Code **reproduzierbar** machen: Jeder Code muss reproduzierbar sein
+    und zu gleichen Ergebnissen kommen. Mit dem Paket
+    [reprex](https://github.com/tidyverse/reprex) lassen sich
+    reproducible examples erstellen.
+6.  **Einfach** statt verschachteln: Je nachvollziehbarer der Code ist,
+    desto besser lassen sich Probleme vermeiden. Nutzen Sie dazu
+    logische Operatoren und die Pipe %\>%. Einfacher Code ist auch
+    **eleganter** Code: Guter Code folgt gewissen ästhetischen
+    Grundregeln und ist auch für Menschen lesbar, d.h. in der Regeln
+    wird für jede neue Funktion eine neue Zeile gewählt, die Pipe immer
+    ans Ende der Zeile gestellt.
+
+### Datentypen
+
+Daten können unterschiedliche Formate annehmen. Die wichtigsten sind
+**numerisch** (numerical) und **text** (string/character) oder
+**logisch** (logical). Numerische Daten werden in integer (ganze
+natürliche Zahlen, z.B. 4, 12 und **double** (Zahlenwerte mit Dezimalen,
+etwa 12.42). Daten des **gleichen Typs** lassen sich über die c()
+Funktion in **Vektoren** zusammenfassen.
+
+```{r Datentypen, message=TRUE, warning=TRUE, paged.print=TRUE}
+
+# Datentypen lasen sich einfach überprüfen.
+# Schreibweisen beachten
+
+is_numeric(12) # natürliche Zahlen
+is_character("Joe") # Text immer in Anführungszeichen
+is_logical(FALSE) # Logische Operatoren immer in CAPS (Großbuchstaben)
+
+# Vectoren fassen verschiedene Daten des gleichen Typs zusammen:
+
+# numerischer Vector
+age <- c(19, 20, 25, 31)
+age
+
+# Überprüfung des Vectors
+is_character(age)
+is_numeric(age)
+
+# Vector aus Textdaten
+names <- c("Miri","Johanna","Egon","Amir")
+names
+
+# Mit numerischen Vektoren lassen sich alle mathematischen Operationen durchführen. Dabei wird jeder Wert einzeln berechnet.
+
+age/2 * 20
+
+```
+
+### **Listen, Faktoren und Data Frames**
+
+Häufig werden unterschiedlichen Datentypen gemeinsam verwendet. Dazu
+werden v.a. **Listen** eingesetzt. Listen können (müssen aber nicht)
+unterschiedliche Datentypen beinhalten. **Faktoren** hingegen verwenden
+unterschiedliche Datentypen und verbinden diese miteinander.
+
+```{r vectors}
+
+# Einzelne Vectoren mit Daten
+age <- c(19,20,25,31)
+weight <- c(50,52,68,76)
+height <- c(162,168,177,182)
+names <- c("Miri","Johanna","Egon","Michel")
+sex <- c("female","female","male","diverse")
+semester <- c(2,2,1,4)
+study <- c("PR","PR","CR","CR")
+
+# Ein Vektor lässt sich direkt aufrufen und liefert dann die Werte des Vektors
+study
+sex
+
+```
+
+```{r lists}
+
+# erstelle einzelne Vektoren
+profs <- c("Bader", "Rinsdorf", "Kamps")
+modul <- c(226305, 226308)
+
+# führe die Vektoren unterschiedlicher Werte zusammen
+prof_modul <- list(profs, modul)
+
+# Ruft die Liste mit den zuvor erstellen Werten auf
+prof_modul
+
+```
+
+**Dataframes**
+
+Dataframes sind einfache Verbindungen zwischen zwei oder mehreren
+Werten, die tabellarisch erstellt werden. Mit dem **\$-Operator** lassen
+sich einzelne Spalten aufrufen.
+
+```{r Dataframes}
+
+# einfachen Dataframe erstellen mit zwei Spalten
+age_weight  <- data.frame(age,weight)
+age_weight
+
+# umfangreicherer dataframe
+students <- data.frame(age,weight,height,names,sex,semester,study)
+students
+
+# Teile eines bestehenden Datenframes zu einem neuen Datenframe zusammenfügen
+
+# der $-Operator liefert die entsprechenden Daten
+name_study <- data.frame(students$names, students$study)
+name_study
+
+```
+
+#### Tibbles
+
+[Tibbles](https://tibble.tidyverse.org) sind die vereinfachte Variante
+eines Dataframes im tidyverse und einfacher zu behandeln. Jede Zeile ist
+eine Beobachtung bzw. Fall und jede Spalte stellt eine Variable dar.
+Damit lassen sich Inhalte viel einfacher analysieren und darstellen.
+
+```{r Tibbles}
+
+students
+# wandelt den data.frame students in das tibble stib um
+s <- as_tibble(students)
+is_tibble(s)
+
+# Glimpse liefert eine Übersicht über den Datensatz, die entsprechenden Variablen in den Spalten und deren Kodierung
+glimpse(s)
+
+# Werte lassen sich direkt aus dem tibble mit $ auslesen
+s$names
+
+```
 

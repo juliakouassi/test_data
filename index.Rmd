@@ -5,5 +5,224 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Down the rabbit-hole
+# Setup
+
+Sie sollten über einen Computerzugriff mit Admin-Rechten und einem
+aktuellen Betriebssystem verfügen. Ob Sie Windows, Mac OS oder Linux
+verwenden spielt keine Rolle, sofern Sie die Admin-Rechte haben und
+Programme selbstständig installieren können. Als Mindestausstattung
+sollten 4GB RAM und 2 GB Festplattenspeicher für die
+Programminstallation zur Verfügung stehen.
+
+## Grundfähigkeiten
+
+Sie sollten in der Lage sein, Ordner- und Dateistrukturen auf ihrem
+Laptop anzulegen. Idealerweise haben Sie dazu Adminstrationstrechte auf
+ihrem Laptop.
+
+### Dateien speichern und verwalten
+
+Wählen Sie die zu speichernde Datei mit einem Rechtsklick aus und wählen
+im Kontext-Menü: Speichern unter... Empfehlenswert ist ein sinnvoller
+Speicherort (Ordner, Dateistruktur). Achten Sie auf folgende Punkte:
+
+-   Einheitliche Dateinamen, z.B. YYYY-MM-TT_Modulnummer_Detail.XXX
+-   Dateinamen sollten aussagekräftig sein, also nicht nur "Abgabe" oder
+    "final".
+-   Verwenden Sie keine Sonderzeichen für Dateinamen, Objekte und
+    Variablen.
+
+## Lokale Installation
+
+Wir arbeiten mit folgenden **Programmen**, die **lokal** auf ihrem
+Laptop installiert sein müssen. Chromebooks funktionieren nur
+eingeschränkt, Tablets gar nicht. Sie können sich einen Laptop aus der
+Bibliothek ausleihen oder alternativ
+[RStudio-Cloud](https://rstudio.cloud) verwenden. Wir verwenden nur
+open-source und gemeinfreie Software, d.h. der Quellcode ist offen
+gelegt und es werden keine Daten gesammelt (Ausnahme:
+Google/Twitter-Account).
+
+-   [R](https://www.r-project.org) (Version \> 4.1)
+-   [RStudio](https://www.rstudio.com/products/rstudio/) (Version \>
+    4.1)
+-   [Pandoc](https://pandoc.org/installing.html)
+-   Texteditor ([Atom.io](https://atom.io) oder ähnliches: hier kommt es
+    auf persönliche Präferenzen an. Achtung: ein Editor ist etwas
+    anderes wie Word oder Open-Office: hier wird Text oder Code direkt
+    bearbeitet und keine grafische Benutzeroberfläche darübergelegt)
+-   Browser ([Firefox](https://www.mozilla.org/de/firefox/new/) oder
+    [Brave](https://brave.com/de/))
+-   [Github](https://github.com)-Account (Empfehlung: HdM-Kürzel
+    verwenden)
+-   [Google](https://www.google.com/?client=safari)-Account (Empfehlung:
+    neuer Account mit HdM-Kürzel)
+-   Optional:
+    [LaTex-Installation](https://www.latex-project.org/get/#tex-distributions)
+    für die Erstellung von PDF-Dokumenten
+-   Optional: [Twitter](https://twitter.com/home)-Account (für die
+    Datenanalyse, Empfehlung: HdM-Kürzel)
+-   Optional: [RStudioCloud](https://rstudio.cloud)-Account
+
+Sollten Sie keinen Laptop haben oder die Programme nicht installieren
+können, lässt sich RStudioCloud alternativ verwenden.
+
+## Quellen und Literatur
+
+Es gibt viele (kostenlose) Tutorials, Videos und Online-Kurse, die
+vertiefend verwendet werden können. Drei Angebote halte ich für
+besonders hilfreich:
+
+**Zum Nachschlagen:**
+
+-   Wickham, H. & Grolemund, G. (2017). [R for Data
+    Science](https://r4ds.had.co.nz). Es gibt von O'Reilly eine deutsche
+    Ausgabe, das Buch ist ein Klassiker und direkt vom Entwickler des
+    tidyverse Konzepts geschrieben. Es deckt den gesamten Workflow ab.
+
+-   Wright, C., Ellis, S.E., Hicks, C. & Peng, R.D. (2021). [Tidyverse
+    Skills for Data
+    Science](https://jhudatascience.org/tidyversecourse/). Sehr gute,
+    praxisorientierte Zusammenfassung der wichtigsten Skills
+    (englishsprachig).
+
+-   Ellis, A. & Mayer, B. (2021). [Einführung
+    in R.](https://methodenlehre.github.io/einfuehrung-in-R/index.html)
+    Kompakte, deutschsprachige Einführung in die wichtigsten Funktionen.
+
+**Selbstlernangebote (interaktiv)**
+
+-   RStudio Primers. Diese Selbstlerneinheiten sind
+
+## Installation von Programmbibliotheken
+
+Wir verwenden folgende Programmbibliotheken in der aktuellsten Version
+
+-   rmarkdown
+-   tidyverse
+-   ggplot2
+
+In wenigen Fällen kommt es beim Paket tidyverse zu Installationsfehlern,
+weil manche Pakete für manche Betriebssysteme (Linux) noch nicht
+aktualisiert waren. Hier ist es sinnvoll, die einzelnen Pakete des
+tidyverse einzeln zu installieren.
+
+```{r setup document, include=FALSE, fig.width = 9, fig.height = 6}
+
+# Setup für knitr (ggf. vorher installieren)
+knitr::opts_chunk$set(echo = TRUE)
+
+# Programmbibliotheken laden bzw. installieren
+library(tidyverse)
+```
+
+## Grundregeln Markdown
+
+Wir verwenden die Auszeichnungssprache RMarkdown, die in RStudio 1.4 als
+Visual Markdown implementiert wurde. Mit [Visual
+Markdown](https://rstudio.github.io/visual-markdown-editing/) lassen
+sich ganz einfach zwischen dem Markdown-Code und der Repräsentation hin
+und her wechseln. Der Befehl dazu ist ganz rechts als Icon in der
+Menüleiste abgelegt. Eine gute Übersicht ist unter
+[\<http://rmarkdown.rstudio.com\>](http://rmarkdown.rstudio.com){.uri}
+abgelegt, [Cheatsheet
+Markdown](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf).
+
+#### YAML
+
+Als YAML wird der [Header (Kopf) eines
+Markdown-Dokuments](https://bookdown.org/yihui/rmarkdown/html-document.html)
+bezeichnet, in dem die Formatierung und Ausgabe des Dokuments festgelegt
+werden. Die meisten YAML-Konfigurationen sind bereits angelegt und
+definieren den Autor und Titel des Dokuments. YAML wird dann relevant,
+wenn mit dem Paket [knitr](https://yihui.org/knitr/) das
+Markdown-Dokument in weitere Formate wie HTML, Word oder PDF exportiert
+wird.
+
+**Code, Layout und Inhalt**
+
+Ein Grundprinzip von Markdown ist es, Inhalt, Layout und Code
+voneinander zu trennen. Das bedeutet, dass der gesamte Inhalt als
+einfacher Text zu lesen ist, egal von welchen Endgerät (im Gegensatz
+etwa zu Textverarbeitungen wie MS Word oder Layout-Programmen). Damit
+ist sichergestellt, dass sich die Inhalte weiterverwenden lassen.
+
+Die **Auszeichnungsformate** für die Formatierung wie etwa Überschriften
+oder Fettungen werden automatisch ausgelesen und entsprechend umgesetzt.
+Teilweise lassen sich auch visuelle Editoren verwenden (z.B. Visual
+Markdown Editor in RStudio). Diese "übersetzen" die Auszeichungen in
+Echtzeit in die Darstellung und lassen so ein ähnliches Arbeiten wie in
+Word.
+
+```{r Markdown Auszeichungen, echo=FALSE, fig.height=6, fig.width=9}
+
+# Überschriften
+
+# Hauptüberschrift 1
+## Kapitelüberschrift 1.1 
+### Teilkapitel 1.1.1 
+
+# Auszeichnungen
+# *fett*
+# **kursiv**
+
+```
+
+**Code-Chunks**
+
+Code Chunks sind konfigurierbare und ausführbare "Code-Schnipsel". Damit
+lässt sich Programmcode direkt in einem Dokument ausführen. Das hat
+mehrere Vorteile.
+
+1.  Der Wechsel zwischen Programmierumgebung und Dokument/Erläuterung
+    entfällt.
+2.  Der Datenbestand im Dokument ist immer aktuell.
+3.  Veränderungen in den Daten werden auf das gesamte Dokument
+    übertragen.
+4.  Variablen bzw. deren Ergebnisse lassen sich direkt im Text
+    einbetten.
+5.  Das Dokument ist für Dritte reproduzierbar, sofern die Datenquelle
+    in einem Online-Verzeichnis liegt und daher leicht austauschbar.
+
+Jeder Code-Chunk benötigt a) einen eindeutigen Namen (keine
+Sonderzeichen) und b) kann [individuell
+eingestellt](https://yihui.org/knitr/options/) werden:
+
+-   echo = FALSE: es wird kein Code ausgegeben, nur das Ergebnis
+    angezeigt
+-   message = TRUE: zeigt alle Meldungen an, FALSE verhindert das.
+-   paged.print=TRUE: liefert den Output auf mehreren Seiten
+-   fig.height=6, fig.width=9: Höhe und Breite der Visualisierung in
+    inch.
+
+**Grafiken einbetten**
+
+Häufig visualisieren wir Daten. Diese lassen sich als Output direkt in
+einem Code-Chunk generieren. Wenn nur eine Abbildung gezeigt werden soll
+ist es hilfreich, den Codechunk auf Echo=FALSE zu stellen, damit nur die
+Abbildung im Text angezeigt wird.
+
+**Verweise im Text**
+
+Sind Objekte im Code definiert, lassen sich diese im Text direkt
+referenzieren.
+
+```{r Beispiel Markdown Referenzierung im Text}
+
+# Wir erstellen ein Objekt mit der Bezeichnung age_anton, das in diesem Beispiel berechnet wird
+
+anton <- 2001 # Geburtsjahr von Anton
+age_anton <- 2021-anton # Alter von Anton 
+age_anton
+plus <- 5
+age_anton_plus <- age_anton + plus
+
+# Das Objekt age_anton lässt sich nun durch `r age_anton` direkt im Markdown-Text einbetten. Wichtig dafür sind die entsprechenden Zeichen, die "backticks" heißen. Wenn das Dokument entsprechend umgewandelt wird, z.B. als HTML, dann werden auch die Variablenwerte im Text entsprechend verändert.
+```
+
+Anton ist `r age_anton` Jahr alt.\
+Anton wird in `r plus` Jahren `age_anton_plus` Jahre alt sein.
+
+Die Werte werden erst ersetzt, wenn das Dokument durch knitr in einem
+anderen Format wie etwa HTML ausgegeben werden.
 
