@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="daten-importieren.html"/>
-
+<link rel="next" href="visualisierung.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -187,6 +187,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.9" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#zusammenfassung-daten-manipulieren"><i class="fa fa-check"></i><b>5.1.9</b> Zusammenfassung Daten manipulieren</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#tidydata-tutor"><i class="fa fa-check"></i><b>5.2</b> Tidydata Tutor</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="visualisierung.html"><a href="visualisierung.html"><i class="fa fa-check"></i><b>6</b> Visualisierung</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="visualisierung.html"><a href="visualisierung.html#daten-vorbereiten"><i class="fa fa-check"></i><b>6.1</b> Daten vorbereiten</a></li>
+<li class="chapter" data-level="6.2" data-path="visualisierung.html"><a href="visualisierung.html#welche-visualisierung-für-welche-daten"><i class="fa fa-check"></i><b>6.2</b> Welche Visualisierung für welche Daten?</a></li>
+<li class="chapter" data-level="6.3" data-path="visualisierung.html"><a href="visualisierung.html#funktionsweise-von-ggplot2"><i class="fa fa-check"></i><b>6.3</b> Funktionsweise von ggplot2</a></li>
+<li class="chapter" data-level="6.4" data-path="visualisierung.html"><a href="visualisierung.html#datenreihen"><i class="fa fa-check"></i><b>6.4</b> Datenreihen</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="visualisierung.html"><a href="visualisierung.html#datenreihe-als-histogramm"><i class="fa fa-check"></i><b>6.4.1</b> Datenreihe als Histogramm</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="visualisierung.html"><a href="visualisierung.html#streudiagramme"><i class="fa fa-check"></i><b>6.5</b> Streudiagramme</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="visualisierung.html"><a href="visualisierung.html#mehrdimensionale-diagramme"><i class="fa fa-check"></i><b>6.5.1</b> Mehrdimensionale Diagramme</a></li>
+<li class="chapter" data-level="6.5.2" data-path="visualisierung.html"><a href="visualisierung.html#facetting-teildiagrame-erstellen"><i class="fa fa-check"></i><b>6.5.2</b> Facetting: Teildiagrame erstellen</a></li>
+<li class="chapter" data-level="6.5.3" data-path="visualisierung.html"><a href="visualisierung.html#aussagen-mit-visualisierungen-treffen"><i class="fa fa-check"></i><b>6.5.3</b> Aussagen mit Visualisierungen treffen</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="visualisierung.html"><a href="visualisierung.html#weitere-quellen-zu-visualisierung"><i class="fa fa-check"></i><b>6.6</b> Weitere Quellen zu Visualisierung</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="visualisierung.html"><a href="visualisierung.html#tutorials"><i class="fa fa-check"></i><b>6.6.1</b> Tutorials</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -719,17 +739,12 @@ darstellen, dazu benötigen wir die Programmbibliothek kableExtra().
 kable() ist in knitr integriert und verwendet vorgefertigte Themes, die
 sich aber anpassen lassen. KableExtra müssten Sie ggf. noch
 installieren.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="datenanalyse-mit-dplyr.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
-<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.6.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;kableExtra&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     group_rows</code></pre>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="datenanalyse-mit-dplyr.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># minimal style</span></span>
-<span id="cb139-2"><a href="datenanalyse-mit-dplyr.html#cb139-2" aria-hidden="true" tabindex="-1"></a>smart_table <span class="sc">%&gt;%</span> <span class="co"># nimm den Datensatz </span></span>
-<span id="cb139-3"><a href="datenanalyse-mit-dplyr.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> <span class="co"># mach eine schöne Tabelle</span></span>
-<span id="cb139-4"><a href="datenanalyse-mit-dplyr.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_minimal</span>() <span class="co"># mit dem minimal theme</span></span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="datenanalyse-mit-dplyr.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb135-2"><a href="datenanalyse-mit-dplyr.html#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-3"><a href="datenanalyse-mit-dplyr.html#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="co"># minimal style</span></span>
+<span id="cb135-4"><a href="datenanalyse-mit-dplyr.html#cb135-4" aria-hidden="true" tabindex="-1"></a>smart_table <span class="sc">%&gt;%</span> <span class="co"># nimm den Datensatz </span></span>
+<span id="cb135-5"><a href="datenanalyse-mit-dplyr.html#cb135-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> <span class="co"># mach eine schöne Tabelle</span></span>
+<span id="cb135-6"><a href="datenanalyse-mit-dplyr.html#cb135-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_minimal</span>() <span class="co"># mit dem minimal theme</span></span></code></pre></div>
 <table class=" lightable-minimal" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -802,11 +817,11 @@ iOS
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="datenanalyse-mit-dplyr.html#cb140-1" aria-hidden="true" tabindex="-1"></a>T_Sex_Phone <span class="ot">&lt;-</span> smart_table <span class="sc">%&gt;%</span> <span class="co"># erstelle ein neues Objekt </span></span>
-<span id="cb140-2"><a href="datenanalyse-mit-dplyr.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">&quot;Geschlechtsverteilung und Smartphone-Nutzung&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># füge eine Tabellenüberschrift hinzu</span></span>
-<span id="cb140-3"><a href="datenanalyse-mit-dplyr.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> T, <span class="at">html_font =</span> <span class="st">&quot;Cambria&quot;</span>) <span class="co"># nutze die gesamte Breite und verwende die Schriftart Cambria.</span></span>
-<span id="cb140-4"><a href="datenanalyse-mit-dplyr.html#cb140-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-5"><a href="datenanalyse-mit-dplyr.html#cb140-5" aria-hidden="true" tabindex="-1"></a>T_Sex_Phone <span class="co"># das ist das formatierte Objekt! </span></span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="datenanalyse-mit-dplyr.html#cb136-1" aria-hidden="true" tabindex="-1"></a>T_Sex_Phone <span class="ot">&lt;-</span> smart_table <span class="sc">%&gt;%</span> <span class="co"># erstelle ein neues Objekt </span></span>
+<span id="cb136-2"><a href="datenanalyse-mit-dplyr.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">&quot;Geschlechtsverteilung und Smartphone-Nutzung&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># füge eine Tabellenüberschrift hinzu</span></span>
+<span id="cb136-3"><a href="datenanalyse-mit-dplyr.html#cb136-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> T, <span class="at">html_font =</span> <span class="st">&quot;Cambria&quot;</span>) <span class="co"># nutze die gesamte Breite und verwende die Schriftart Cambria.</span></span>
+<span id="cb136-4"><a href="datenanalyse-mit-dplyr.html#cb136-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-5"><a href="datenanalyse-mit-dplyr.html#cb136-5" aria-hidden="true" tabindex="-1"></a>T_Sex_Phone <span class="co"># das ist das formatierte Objekt! </span></span></code></pre></div>
 <table class=" lightable-classic" style="font-family: Cambria; margin-left: auto; margin-right: auto;">
 <caption>
 (#tab:Great tables with kable)Geschlechtsverteilung und Smartphone-Nutzung
@@ -972,8 +987,8 @@ direkt in das Dokument einbetten.</p>
 Parameter zu verbinden. Dazu verwenden wir z.B. logische Operatoren. Wir
 möchten z.B. nur weibliche CR-Vertieferinnen, die ein android smartphone
 verwenden und größer sind als 175cm.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="datenanalyse-mit-dplyr.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
-<span id="cb141-2"><a href="datenanalyse-mit-dplyr.html#cb141-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="datenanalyse-mit-dplyr.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
+<span id="cb137-2"><a href="datenanalyse-mit-dplyr.html#cb137-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## -- Column specification ---------------------------------------------------------------------------------------------------------------------
 ## cols(
@@ -994,23 +1009,23 @@ verwenden und größer sind als 175cm.</p>
 ##   location = col_character(),
 ##   county = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="datenanalyse-mit-dplyr.html#cb143-1" aria-hidden="true" tabindex="-1"></a>androids175 <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span></span>
-<span id="cb143-2"><a href="datenanalyse-mit-dplyr.html#cb143-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">!=</span> <span class="st">&quot;2&quot;</span> <span class="sc">&amp;</span> phone <span class="sc">==</span> <span class="st">&quot;1&quot;</span> <span class="sc">&amp;</span> height<span class="sc">&gt;=</span><span class="st">&quot;175&quot;</span> <span class="sc">&amp;</span> crpr <span class="sc">==</span> <span class="st">&quot;1&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb143-3"><a href="datenanalyse-mit-dplyr.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name_first, sex, crpr, phone, height)</span>
-<span id="cb143-4"><a href="datenanalyse-mit-dplyr.html#cb143-4" aria-hidden="true" tabindex="-1"></a>androids175</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="datenanalyse-mit-dplyr.html#cb139-1" aria-hidden="true" tabindex="-1"></a>androids175 <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span></span>
+<span id="cb139-2"><a href="datenanalyse-mit-dplyr.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">!=</span> <span class="st">&quot;2&quot;</span> <span class="sc">&amp;</span> phone <span class="sc">==</span> <span class="st">&quot;1&quot;</span> <span class="sc">&amp;</span> height<span class="sc">&gt;=</span><span class="st">&quot;175&quot;</span> <span class="sc">&amp;</span> crpr <span class="sc">==</span> <span class="st">&quot;1&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb139-3"><a href="datenanalyse-mit-dplyr.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name_first, sex, crpr, phone, height)</span>
+<span id="cb139-4"><a href="datenanalyse-mit-dplyr.html#cb139-4" aria-hidden="true" tabindex="-1"></a>androids175</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##   name_first   sex  crpr phone height
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 Lena           1     1     1    175</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="datenanalyse-mit-dplyr.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wer möchte, kann das noch etwas schöner machen</span></span>
-<span id="cb145-2"><a href="datenanalyse-mit-dplyr.html#cb145-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb145-3"><a href="datenanalyse-mit-dplyr.html#cb145-3" aria-hidden="true" tabindex="-1"></a>a175 <span class="ot">&lt;-</span> androids175 <span class="sc">%&gt;%</span></span>
-<span id="cb145-4"><a href="datenanalyse-mit-dplyr.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Name =</span> <span class="st">&quot;name_first&quot;</span>,</span>
-<span id="cb145-5"><a href="datenanalyse-mit-dplyr.html#cb145-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Geschlecht =</span> <span class="st">&quot;sex&quot;</span>,</span>
-<span id="cb145-6"><a href="datenanalyse-mit-dplyr.html#cb145-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Smartphone =</span> <span class="st">&quot;phone&quot;</span>,</span>
-<span id="cb145-7"><a href="datenanalyse-mit-dplyr.html#cb145-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Vertiefung =</span> <span class="st">&quot;crpr&quot;</span>,</span>
-<span id="cb145-8"><a href="datenanalyse-mit-dplyr.html#cb145-8" aria-hidden="true" tabindex="-1"></a>         Größe <span class="ot">=</span> <span class="st">&quot;height&quot;</span>)</span>
-<span id="cb145-9"><a href="datenanalyse-mit-dplyr.html#cb145-9" aria-hidden="true" tabindex="-1"></a>a175</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="datenanalyse-mit-dplyr.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wer möchte, kann das noch etwas schöner machen</span></span>
+<span id="cb141-2"><a href="datenanalyse-mit-dplyr.html#cb141-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-3"><a href="datenanalyse-mit-dplyr.html#cb141-3" aria-hidden="true" tabindex="-1"></a>a175 <span class="ot">&lt;-</span> androids175 <span class="sc">%&gt;%</span></span>
+<span id="cb141-4"><a href="datenanalyse-mit-dplyr.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Name =</span> <span class="st">&quot;name_first&quot;</span>,</span>
+<span id="cb141-5"><a href="datenanalyse-mit-dplyr.html#cb141-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Geschlecht =</span> <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb141-6"><a href="datenanalyse-mit-dplyr.html#cb141-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Smartphone =</span> <span class="st">&quot;phone&quot;</span>,</span>
+<span id="cb141-7"><a href="datenanalyse-mit-dplyr.html#cb141-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Vertiefung =</span> <span class="st">&quot;crpr&quot;</span>,</span>
+<span id="cb141-8"><a href="datenanalyse-mit-dplyr.html#cb141-8" aria-hidden="true" tabindex="-1"></a>         Größe <span class="ot">=</span> <span class="st">&quot;height&quot;</span>)</span>
+<span id="cb141-9"><a href="datenanalyse-mit-dplyr.html#cb141-9" aria-hidden="true" tabindex="-1"></a>a175</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##   Name  Geschlecht Vertiefung Smartphone Größe
 ##   &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
@@ -1049,8 +1064,8 @@ nachvollziehen und so der eigene Umgang mit Code verbessern. Beispiel
           </div>
         </div>
       </div>
-<a href="daten-importieren.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="daten-importieren.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualisierung.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

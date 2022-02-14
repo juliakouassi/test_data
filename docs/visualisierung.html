@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Visualisierung | Data Literacy Test</title>
+  <meta name="description" content="Chapter 6 Visualisierung | Data Literacy Test" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Visualisierung | Data Literacy Test" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Visualisierung | Data Literacy Test" />
+  
+  
+  
+
+<meta name="author" content="Julia Kouassi" />
+
+
+<meta name="date" content="2022-02-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="datenanalyse-mit-dplyr.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Test_Data </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setup</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#grundfähigkeiten"><i class="fa fa-check"></i><b>1.1</b> Grundfähigkeiten</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#dateien-speichern-und-verwalten"><i class="fa fa-check"></i><b>1.1.1</b> Dateien speichern und verwalten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lokale-installation"><i class="fa fa-check"></i><b>1.2</b> Lokale Installation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#quellen-und-literatur"><i class="fa fa-check"></i><b>1.3</b> Quellen und Literatur</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installation-von-programmbibliotheken"><i class="fa fa-check"></i><b>1.4</b> Installation von Programmbibliotheken</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#grundregeln-markdown"><i class="fa fa-check"></i><b>1.5</b> Grundregeln Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html"><i class="fa fa-check"></i><b>2</b> Grundlegende Funktionen</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#grundfunktionen-in-r"><i class="fa fa-check"></i><b>2.1</b> Grundfunktionen in R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#daten-sichern"><i class="fa fa-check"></i><b>2.1.1</b> <strong>Daten sichern</strong></a></li>
+<li class="chapter" data-level="2.1.2" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#grundrechenarten"><i class="fa fa-check"></i><b>2.1.2</b> Grundrechenarten</a></li>
+<li class="chapter" data-level="2.1.3" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#zuweisungen-und-variablen"><i class="fa fa-check"></i><b>2.1.3</b> Zuweisungen und Variablen</a></li>
+<li class="chapter" data-level="2.1.4" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#was-ist-guter-code"><i class="fa fa-check"></i><b>2.1.4</b> Was ist “guter” Code?</a></li>
+<li class="chapter" data-level="2.1.5" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#datentypen"><i class="fa fa-check"></i><b>2.1.5</b> Datentypen</a></li>
+<li class="chapter" data-level="2.1.6" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#listen-faktoren-und-data-frames"><i class="fa fa-check"></i><b>2.1.6</b> <strong>Listen, Faktoren und Data Frames</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html"><i class="fa fa-check"></i><b>3</b> Daten bereinigen (tidy data)</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html#tidyr"><i class="fa fa-check"></i><b>3.0.1</b> tidyr</a></li>
+<li class="chapter" data-level="3.0.2" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html#tibbles-1"><i class="fa fa-check"></i><b>3.0.2</b> Tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="daten-importieren.html"><a href="daten-importieren.html"><i class="fa fa-check"></i><b>4</b> Daten importieren</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="daten-importieren.html"><a href="daten-importieren.html#datenimport"><i class="fa fa-check"></i><b>4.1</b> Datenimport</a></li>
+<li class="chapter" data-level="4.2" data-path="daten-importieren.html"><a href="daten-importieren.html#übersicht-über-daten"><i class="fa fa-check"></i><b>4.2</b> Übersicht über Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html"><i class="fa fa-check"></i><b>5</b> Datenanalyse mit dplyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#daten-selektieren"><i class="fa fa-check"></i><b>5.1</b> Daten selektieren</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#zeilen-manipulierenfiltern"><i class="fa fa-check"></i><b>5.1.1</b> Zeilen manipulieren/filtern</a></li>
+<li class="chapter" data-level="5.1.2" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#spalten-manipulieren"><i class="fa fa-check"></i><b>5.1.2</b> Spalten manipulieren</a></li>
+<li class="chapter" data-level="5.1.3" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#werte-gruppieren"><i class="fa fa-check"></i><b>5.1.3</b> Werte gruppieren</a></li>
+<li class="chapter" data-level="5.1.4" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#mittelwerte-berechnen-und-speichern"><i class="fa fa-check"></i><b>5.1.4</b> Mittelwerte berechnen und speichern</a></li>
+<li class="chapter" data-level="5.1.5" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#spalten-umbennen"><i class="fa fa-check"></i><b>5.1.5</b> Spalten umbennen</a></li>
+<li class="chapter" data-level="5.1.6" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#werte-recodieren-bzw.-umbennen"><i class="fa fa-check"></i><b>5.1.6</b> Werte recodieren bzw. umbennen</a></li>
+<li class="chapter" data-level="5.1.7" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#exkurs-tabellen-einfach-erstellen"><i class="fa fa-check"></i><b>5.1.7</b> Exkurs: Tabellen einfach erstellen</a></li>
+<li class="chapter" data-level="5.1.8" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#kür-verschiedene-bedingungen-kombinieren"><i class="fa fa-check"></i><b>5.1.8</b> Kür: verschiedene Bedingungen kombinieren</a></li>
+<li class="chapter" data-level="5.1.9" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#zusammenfassung-daten-manipulieren"><i class="fa fa-check"></i><b>5.1.9</b> Zusammenfassung Daten manipulieren</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#tidydata-tutor"><i class="fa fa-check"></i><b>5.2</b> Tidydata Tutor</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="visualisierung.html"><a href="visualisierung.html"><i class="fa fa-check"></i><b>6</b> Visualisierung</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="visualisierung.html"><a href="visualisierung.html#daten-vorbereiten"><i class="fa fa-check"></i><b>6.1</b> Daten vorbereiten</a></li>
+<li class="chapter" data-level="6.2" data-path="visualisierung.html"><a href="visualisierung.html#welche-visualisierung-für-welche-daten"><i class="fa fa-check"></i><b>6.2</b> Welche Visualisierung für welche Daten?</a></li>
+<li class="chapter" data-level="6.3" data-path="visualisierung.html"><a href="visualisierung.html#funktionsweise-von-ggplot2"><i class="fa fa-check"></i><b>6.3</b> Funktionsweise von ggplot2</a></li>
+<li class="chapter" data-level="6.4" data-path="visualisierung.html"><a href="visualisierung.html#datenreihen"><i class="fa fa-check"></i><b>6.4</b> Datenreihen</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="visualisierung.html"><a href="visualisierung.html#datenreihe-als-histogramm"><i class="fa fa-check"></i><b>6.4.1</b> Datenreihe als Histogramm</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="visualisierung.html"><a href="visualisierung.html#streudiagramme"><i class="fa fa-check"></i><b>6.5</b> Streudiagramme</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="visualisierung.html"><a href="visualisierung.html#mehrdimensionale-diagramme"><i class="fa fa-check"></i><b>6.5.1</b> Mehrdimensionale Diagramme</a></li>
+<li class="chapter" data-level="6.5.2" data-path="visualisierung.html"><a href="visualisierung.html#facetting-teildiagrame-erstellen"><i class="fa fa-check"></i><b>6.5.2</b> Facetting: Teildiagrame erstellen</a></li>
+<li class="chapter" data-level="6.5.3" data-path="visualisierung.html"><a href="visualisierung.html#aussagen-mit-visualisierungen-treffen"><i class="fa fa-check"></i><b>6.5.3</b> Aussagen mit Visualisierungen treffen</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="visualisierung.html"><a href="visualisierung.html#weitere-quellen-zu-visualisierung"><i class="fa fa-check"></i><b>6.6</b> Weitere Quellen zu Visualisierung</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="visualisierung.html"><a href="visualisierung.html#tutorials"><i class="fa fa-check"></i><b>6.6.1</b> Tutorials</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Literacy Test</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualisierung" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Visualisierung</h1>
+<p>Daten und ihre Zusammenhänge werden häufig erst durch eine
+Visualisierung sichtbar. Das gilt auch für die öffentliche
+Kommunikation. Beispielsweise zeigt das <a href="https://bbc.github.io/rcookbook/">BBC Visual Journalism
+Cookbook</a>, wie sich sich Grafiken im
+Stil der BBC mit ggplot2 erstellen lassen. Eine sehr schöne Einführung
+gibt es bei <a href="https://clauswilke.com/dataviz/">Fundamentals of Data
+Visualization</a> (übrigens direkt in
+Markdown geschrieben). Sehr schön auf den Punkt mit vielen
+Code-Beispielen bringt das Kapitel
+<a href="https://www.produnis.de/R/Kapitel-StatistikMitR.html#Kapitel-ggplot">ggplot</a>
+bei Statistik mit R und RStudio (übrigens sind die Einführungskapitel zu
+<a href="https://www.produnis.de/R/Kapitel-REinfuhrung.html">R allgemein</a> und zu
+<a href="https://www.produnis.de/R/Kapitel-Tidyverse.html">tidyverse</a> auch sehr
+gut zum Nacharbeiten, auch ohne Vorkenntnisse). In einer sehr
+ausführliche und nachvollziehbare Visualisierung zeigt Cedric Scherer,
+wie man <a href="https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/">schöne
+Visualisierungen</a>
+erstellt.</p>
+<p>Wir werden hier nur einfache Formen der Visualisierung kennen lernen und
+verwenden dafür das Paket ggplot2. Es gilt als eines der umfassendsten
+und flexibelsten Pakete für Visualisierungen aller Art. Einfacher werden
+Visualisierungen durch das Paket
+<a href="https://github.com/dreamRs/esquisse">esquisse</a>, das als RStudio-Add-in
+eine graphische Oberfläche für ggplot2 ermöglicht.
+<a href="https://github.com/HLasse/gglearn2">gglearn2</a> ist eine tolle,
+interaktive Möglichkeit, sich die Funktionalität von ggplot2 selbst zu
+erschließen. Eine gute Einführung ist das <a href="https://methodenlehre.github.io/einfuehrung-in-R/grafiken-mit-ggplot2.html">Tutorial zu ggplot 2bei
+Methodenlehre</a>.</p>
+<div id="daten-vorbereiten" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Daten vorbereiten</h2>
+</div>
+<div id="welche-visualisierung-für-welche-daten" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Welche Visualisierung für welche Daten?</h2>
+<p>Es gibt viele Möglichkeiten, Daten zu visualisieren. Die Wahl einer
+“guten” Visualisierung liegt auch an den vorhandenen Daten, deren
+Codierung und Umfang. Eine sehr gute Übersicht über die Vor- und
+Nachteile der Visualisierung bietet <a href="https://www.data-to-viz.com" class="uri">https://www.data-to-viz.com</a>.
+Ebenso hilfreich für die Arbeit mit ggplot2 ist <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/translations/german/data-visualization_de.pdf">Cheatsheet
+(PDF)</a>
+mit der Zusammenfassung der wichtigsten Befehle.</p>
+</div>
+<div id="funktionsweise-von-ggplot2" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Funktionsweise von ggplot2</h2>
+<p>Das Paket ggplot2 basiert auf die Idee des Tidyverse und einer
+“Grammatik der Visualisierung”. Der Code ist auf dern ersten Blick etwas
+umständlich, lässt aber die Kontrolle über alle Darstellungsvariablen
+zu. Im Gegensatz zur pipe %&gt;% verwendet ggplot das plus innerhalb des
+Codes, um die Bedingungen für die einzelnen Elemente festzulegen</p>
+<p>Eine minimale Visualisierung besteht aus drei Zeilen</p>
+<ol style="list-style-type: decimal">
+<li><p>Wir müssen zunächst den <strong>Datensatz</strong> aufrufen, damit ggplot2
+“weiß”, welche Variablen zur Verfügung stehen.</p></li>
+<li><p>Wir müssen festlegen, nach welcher <strong>Ästhetik</strong> die Visualisierung
+umgesetzt werden soll: aes()</p></li>
+<li><p>Danach wird festgelegt, wie die <strong>grafischen Elemente</strong> dargestellt
+werden: geom_(). Hier gibt es bereits viele vorgefertigte
+Versionen, auf die man gut zurückgreifen kann.</p></li>
+</ol>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="visualisierung.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wir verwenden den Datensatz s und erstellen eine neue Visualisierung</span></span>
+<span id="cb143-2"><a href="visualisierung.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Dazu legen wir zunächst die Fläche (mapping) an, auf der die Visualisierung stattfinden soll.</span></span>
+<span id="cb143-3"><a href="visualisierung.html#cb143-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-4"><a href="visualisierung.html#cb143-4" aria-hidden="true" tabindex="-1"></a>s_vis <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span> </span>
+<span id="cb143-5"><a href="visualisierung.html#cb143-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">mapping =</span> </span>
+<span id="cb143-6"><a href="visualisierung.html#cb143-6" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">aes</span>(<span class="at">x =</span> weight, </span>
+<span id="cb143-7"><a href="visualisierung.html#cb143-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> height,</span>
+<span id="cb143-8"><a href="visualisierung.html#cb143-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">color =</span> sex,</span>
+<span id="cb143-9"><a href="visualisierung.html#cb143-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fill =</span> sex)</span>
+<span id="cb143-10"><a href="visualisierung.html#cb143-10" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb143-11"><a href="visualisierung.html#cb143-11" aria-hidden="true" tabindex="-1"></a>s_vis</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Aufbau%20von%20ggplot2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="visualisierung.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lege ein neues Objekt s_vis aus dem Datensatz s an: mapping</span></span>
+<span id="cb144-2"><a href="visualisierung.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="co"># definiere die X und Y-Achse nah den Variablen: x und y</span></span>
+<span id="cb144-3"><a href="visualisierung.html#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wähle Optional aus, ob Farben verwendet werden sollen: color und fill</span></span>
+<span id="cb144-4"><a href="visualisierung.html#cb144-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-5"><a href="visualisierung.html#cb144-5" aria-hidden="true" tabindex="-1"></a>s_vis <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Aufbau%20von%20ggplot2-2.png" width="672" /></p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="visualisierung.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># füge das geom (also die Daten von X und Y-Achse) als einfaches Streudiagramm hinzu, d.h. die Punkte werden entlang der X- und Y-Achse positioniert</span></span>
+<span id="cb145-2"><a href="visualisierung.html#cb145-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-3"><a href="visualisierung.html#cb145-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-4"><a href="visualisierung.html#cb145-4" aria-hidden="true" tabindex="-1"></a>s_vis <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Aufbau%20von%20ggplot2-3.png" width="672" /></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="visualisierung.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hier arbeiten wir auch mit einem Streudiagramm, fügen aber noch einige Argumente über die Größe (size) und Transparenz (alpha) der Punkte an.</span></span></code></pre></div>
+<p>ggplot(s) + # ruft den Datensatz auf<br />
+aes() + # legt die Werte fest, die verwendet werden sollen<br />
+geom() + legt die Art der Visualisierung fest.</p>
+</div>
+<div id="datenreihen" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Datenreihen</h2>
+<p>Ein Histogramm trägt die Daten auf der horizontalen Achse (X-Achse) ab..
+Die Anzahl der einzelnen Abschnitte ist abhängig von den ausgewählten
+Daten.</p>
+<div id="datenreihe-als-histogramm" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Datenreihe als Histogramm</h3>
+<p>Wir verwenden den students Datensatz. Uns interessiert nun, wie sich das
+Gewicht der Studierenden verteilt. Dazu werden die einzelnen Werte in
+“bins”, also einzelne Abschnitte eingeteilt. Für das Beispiel verändern
+wir die Anzahl der “bins”, die eine Art “Zoom” in den Datensatz
+ermöglichen.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="visualisierung.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Beispiel 1: </span></span>
+<span id="cb147-2"><a href="visualisierung.html#cb147-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-3"><a href="visualisierung.html#cb147-3" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(s) <span class="sc">+</span> <span class="co"># verwende den Datensatz aus s</span></span>
+<span id="cb147-4"><a href="visualisierung.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> weight) <span class="sc">+</span> <span class="co"># wähle als Wert für die x-Achse die Variable &quot;weight&quot;</span></span>
+<span id="cb147-5"><a href="visualisierung.html#cb147-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">7</span>) <span class="co"># wähle als Form ein Histogramm mit entsprechenden Balken</span></span>
+<span id="cb147-6"><a href="visualisierung.html#cb147-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-7"><a href="visualisierung.html#cb147-7" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(s) <span class="sc">+</span></span>
+<span id="cb147-8"><a href="visualisierung.html#cb147-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> weight) <span class="sc">+</span></span>
+<span id="cb147-9"><a href="visualisierung.html#cb147-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> 16L, <span class="at">fill =</span> <span class="st">&quot;#4682B4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb147-10"><a href="visualisierung.html#cb147-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb147-11"><a href="visualisierung.html#cb147-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Gewicht&quot;</span>,</span>
+<span id="cb147-12"><a href="visualisierung.html#cb147-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Anzahl&quot;</span>,</span>
+<span id="cb147-13"><a href="visualisierung.html#cb147-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Gewichtsverteilung&quot;</span>,</span>
+<span id="cb147-14"><a href="visualisierung.html#cb147-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Gewicht in kg&quot;</span>,</span>
+<span id="cb147-15"><a href="visualisierung.html#cb147-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;38 Studierende&quot;</span></span>
+<span id="cb147-16"><a href="visualisierung.html#cb147-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb147-17"><a href="visualisierung.html#cb147-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb147-18"><a href="visualisierung.html#cb147-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-19"><a href="visualisierung.html#cb147-19" aria-hidden="true" tabindex="-1"></a>w3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(s) <span class="sc">+</span></span>
+<span id="cb147-20"><a href="visualisierung.html#cb147-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> weight) <span class="sc">+</span></span>
+<span id="cb147-21"><a href="visualisierung.html#cb147-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> 38L, <span class="at">fill =</span> <span class="st">&quot;#4682B4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb147-22"><a href="visualisierung.html#cb147-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb147-23"><a href="visualisierung.html#cb147-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Gewicht&quot;</span>,</span>
+<span id="cb147-24"><a href="visualisierung.html#cb147-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Anzahl&quot;</span>,</span>
+<span id="cb147-25"><a href="visualisierung.html#cb147-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Gewichtsverteilung&quot;</span>,</span>
+<span id="cb147-26"><a href="visualisierung.html#cb147-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Gewicht in kg&quot;</span>,</span>
+<span id="cb147-27"><a href="visualisierung.html#cb147-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;38 Studierende&quot;</span></span>
+<span id="cb147-28"><a href="visualisierung.html#cb147-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb147-29"><a href="visualisierung.html#cb147-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb147-30"><a href="visualisierung.html#cb147-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-31"><a href="visualisierung.html#cb147-31" aria-hidden="true" tabindex="-1"></a>w1</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Histogramm%20-%20Beispiele-1.png" width="672" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="visualisierung.html#cb148-1" aria-hidden="true" tabindex="-1"></a>w2</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Histogramm%20-%20Beispiele-2.png" width="672" /></p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="visualisierung.html#cb149-1" aria-hidden="true" tabindex="-1"></a>w3</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Histogramm%20-%20Beispiele-3.png" width="672" /></p>
+</div>
+</div>
+<div id="streudiagramme" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Streudiagramme</h2>
+<p>Streudiagramme sind besonders gut geeignet, den Zusammenhang zwischen
+zwei Variablen zu zeigen. Es lässt sich in ggplot leicht eine Trendlinie
+hinzufügen. Bei unserem Beispiel sehen wir gut den linearen Zusammenhang
+zwischen Größe und Gewicht (je größer desto schwerer bzw. auch je
+schwerer desto größer, natürlich mit einigen Abweichungen).</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="visualisierung.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(s) <span class="sc">+</span></span>
+<span id="cb150-2"><a href="visualisierung.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> height, <span class="at">size =</span> weight) <span class="sc">+</span></span>
+<span id="cb150-3"><a href="visualisierung.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">&quot;circle&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;#4682B4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb150-4"><a href="visualisierung.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> <span class="fl">1.00</span>) <span class="sc">+</span></span>
+<span id="cb150-5"><a href="visualisierung.html#cb150-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb150-6"><a href="visualisierung.html#cb150-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Zusammenhang Gewicht und Größe&quot;</span>,</span>
+<span id="cb150-7"><a href="visualisierung.html#cb150-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Streudiagramm auf zwei Achsen&quot;</span>,</span>
+<span id="cb150-8"><a href="visualisierung.html#cb150-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;38 Studierende&quot;</span></span>
+<span id="cb150-9"><a href="visualisierung.html#cb150-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb150-10"><a href="visualisierung.html#cb150-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb150-11"><a href="visualisierung.html#cb150-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/Streudiagramm - zwei Variablen Gewicht und Größe-1.png" width="672" /></p>
+<div id="mehrdimensionale-diagramme" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Mehrdimensionale Diagramme</h3>
+<p>Diagramme können viele Informationen abbilden. Dazu ist es sinnvoll,
+sich vor der Visualisierung eine Skizze zu machen.</p>
+<p>Wir fügen zwei weitere Informationen hinzu: a) Geschlecht als
+Farbcodierung und b) Gewicht als Größe der Punkte. Diese Informationen
+werden wieder bei aes() hinterlegt.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="visualisierung.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(s) <span class="sc">+</span></span>
+<span id="cb152-2"><a href="visualisierung.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> height, <span class="at">colour =</span> sex, <span class="at">size =</span> weight) <span class="sc">+</span></span>
+<span id="cb152-3"><a href="visualisierung.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">&quot;circle&quot;</span>) <span class="sc">+</span></span>
+<span id="cb152-4"><a href="visualisierung.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">&quot;#EF5AFF&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#048DF6&quot;</span>) <span class="sc">+</span></span>
+<span id="cb152-5"><a href="visualisierung.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb152-6"><a href="visualisierung.html#cb152-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Zusammenhang Gewicht und Größe und Geschlecht&quot;</span>,</span>
+<span id="cb152-7"><a href="visualisierung.html#cb152-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Streudiagramm auf zwei Achsen&quot;</span>,</span>
+<span id="cb152-8"><a href="visualisierung.html#cb152-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;38 Studierende, Gewicht und Geschlecht visualisiert&quot;</span></span>
+<span id="cb152-9"><a href="visualisierung.html#cb152-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb152-10"><a href="visualisierung.html#cb152-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb152-11"><a href="visualisierung.html#cb152-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Mehrdimensionsionale%20Diagramme-1.png" width="384" /></p>
+<p>Die Visualisierung zeigt, wie sich biologische Eigenschaften verteilen:
+Frauen sind tendenziell kleiner und leichter, Männer eher größer und
+schwerer. Es gibt in unserem Sample z.B. nur eine Frau über 1,80m, dafür
+sind aber vier von sechs Männer über 1,80cm. Um gesicherte Aussagen zu
+treffen müssten wir natürlich hier große Datensätze als Vergleich
+heranziehen. Beispielsweise zeigt die Statistik-Plattform des Bundes
+DeStasis, dass
+<a href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Gesundheit/Gesundheitszustand-Relevantes-Verhalten/Tabellen/koerpermasse-frauen.html">Frauen</a>
+zwischen 18 und 30 1,68 cm groß und 63kg schwer waren bzw.
+<a href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Gesundheit/Gesundheitszustand-Relevantes-Verhalten/Tabellen/liste-koerpermasse.html">Männer</a>
+1,81m groß und 78kg schwer sind (Stand Mikrozenus 2017).</p>
+</div>
+<div id="facetting-teildiagrame-erstellen" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Facetting: Teildiagrame erstellen</h3>
+<p>Eine der faszinierendsten Funktionen bei ggplot2 ist das sogenannte
+facetting, damit werden facets, also Teilmengen der Daten aus dem
+Datensatz verwendet. Dies ist ähnliche wie eine Gruppierung. Dazu wird
+der Befehl facet_wrap() eingesetzt. Die Visualisierung wird dann
+automatisch nach den drei Werten für Geschlecht unterteilt.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="visualisierung.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(s) <span class="sc">+</span></span>
+<span id="cb153-2"><a href="visualisierung.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">colour =</span> sex, <span class="at">size =</span> weight) <span class="sc">+</span></span>
+<span id="cb153-3"><a href="visualisierung.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">&quot;circle&quot;</span>) <span class="sc">+</span></span>
+<span id="cb153-4"><a href="visualisierung.html#cb153-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">&quot;#EF5AFF&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#048DF6&quot;</span>) <span class="sc">+</span></span>
+<span id="cb153-5"><a href="visualisierung.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb153-6"><a href="visualisierung.html#cb153-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;left&quot;</span>) <span class="sc">+</span></span>
+<span id="cb153-7"><a href="visualisierung.html#cb153-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(sex))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/Facetting%20nach%20Geschlecht-1.png" width="672" /></p>
+</div>
+<div id="aussagen-mit-visualisierungen-treffen" class="section level3" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Aussagen mit Visualisierungen treffen</h3>
+<p>Uns interessiert nun der Gesundheitszustand des Samples. Größe und
+Gewicht sind nur eingeschränkt aussagekräftig. Wir wollen deshalb den
+BMI-Index weiterverwenden:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="visualisierung.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten vorbereiten</span></span>
+<span id="cb154-2"><a href="visualisierung.html#cb154-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-3"><a href="visualisierung.html#cb154-3" aria-hidden="true" tabindex="-1"></a>bmi <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span> <span class="co"># </span></span>
+<span id="cb154-4"><a href="visualisierung.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">height =</span> height<span class="sc">/</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="co"># multipliziere die cm mit 100 um meter zu erhalten</span></span>
+<span id="cb154-5"><a href="visualisierung.html#cb154-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bmi =</span> weight<span class="sc">/</span>(height<span class="sc">*</span>height)) <span class="sc">%&gt;%</span>  <span class="co"># lege eine neue Variable bmi an</span></span>
+<span id="cb154-6"><a href="visualisierung.html#cb154-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, height, weight, sex, age_real, bmi) </span>
+<span id="cb154-7"><a href="visualisierung.html#cb154-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># für eine einfachere Übersicht runde auf eine Dezimale</span></span>
+<span id="cb154-8"><a href="visualisierung.html#cb154-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-9"><a href="visualisierung.html#cb154-9" aria-hidden="true" tabindex="-1"></a>bmi</span></code></pre></div>
+<pre><code>## # A tibble: 38 x 6
+##       id height weight   sex age_real   bmi
+##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+##  1     1   1.67     57     1       21  20.4
+##  2     2   1.65     55     1       26  20.2
+##  3     3   1.75     65     1       22  21.2
+##  4     4   1.72     59     1       21  19.9
+##  5     5   1.63     52     1       18  19.6
+##  6     6   1.77     63     1       20  20.1
+##  7     7   1.72     64     1       20  21.6
+##  8     8   1.69     59     1       25  20.7
+##  9     9   1.84     82     2       26  24.2
+## 10    10   1.74     70     2       23  23.1
+## # ... with 28 more rows</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="visualisierung.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bmi) <span class="sc">+</span></span>
+<span id="cb156-2"><a href="visualisierung.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">colour =</span> bmi, <span class="at">size =</span> bmi) <span class="sc">+</span></span>
+<span id="cb156-3"><a href="visualisierung.html#cb156-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">&quot;circle&quot;</span>) <span class="sc">+</span></span>
+<span id="cb156-4"><a href="visualisierung.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">span =</span> 1L) <span class="sc">+</span></span>
+<span id="cb156-5"><a href="visualisierung.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">&quot;#70DA27&quot;</span>, <span class="at">high =</span> <span class="st">&quot;#F80000&quot;</span>) <span class="sc">+</span></span>
+<span id="cb156-6"><a href="visualisierung.html#cb156-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb156-7"><a href="visualisierung.html#cb156-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;BMI-Index&quot;</span>,</span>
+<span id="cb156-8"><a href="visualisierung.html#cb156-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;BMI in Abhängigkeit von Größe und Gewicht&quot;</span>,</span>
+<span id="cb156-9"><a href="visualisierung.html#cb156-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Je höher der BMI desto dunkler die Farbe und desto größer.&quot;</span></span>
+<span id="cb156-10"><a href="visualisierung.html#cb156-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb156-11"><a href="visualisierung.html#cb156-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/BMI%20visualisieren-1.png" width="672" /></p>
+<p>Ein BMI zwischen 19 und 25 gilt als in Ordnung, wobei das nur ein grober
+Indikator ist. Es geht in diesem Beispiel nicht darum, ob jemand als
+“dick” oder “dünn” gilt, sondern nur um den statistischen Zusammenhang
+zwischen Daten.</p>
+</div>
+</div>
+<div id="weitere-quellen-zu-visualisierung" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> Weitere Quellen zu Visualisierung</h2>
+<div id="tutorials" class="section level3" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Tutorials</h3>
+<ul>
+<li>Das <a href="https://evamaerey.github.io/flipbooks/textbook">R Flipbook
+Tutorial</a> zeigt die
+wichtigsten Schritte in R als Flipbooks, die gut und einfach
+nachvollziehbar sind: ideal zum Selbstlernen.</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="datenanalyse-mit-dplyr.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/juliakouassi/test_data/edit/master/06-visualisierung.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/juliakouassi/test_data/blob/master/06-visualisierung.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

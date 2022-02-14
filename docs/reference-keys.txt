@@ -37,3 +37,15 @@ exkurs-tabellen-einfach-erstellen
 kür-verschiedene-bedingungen-kombinieren
 zusammenfassung-daten-manipulieren
 tidydata-tutor
+visualisierung
+daten-vorbereiten
+welche-visualisierung-für-welche-daten
+funktionsweise-von-ggplot2
+datenreihen
+datenreihe-als-histogramm
+streudiagramme
+mehrdimensionale-diagramme
+facetting-teildiagrame-erstellen
+aussagen-mit-visualisierungen-treffen
+weitere-quellen-zu-visualisierung
+tutorials

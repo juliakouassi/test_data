@@ -1,0 +1,275 @@
+# Visualisierung
+
+Daten und ihre Zusammenhänge werden häufig erst durch eine
+Visualisierung sichtbar. Das gilt auch für die öffentliche
+Kommunikation. Beispielsweise zeigt das [BBC Visual Journalism
+Cookbook](https://bbc.github.io/rcookbook/), wie sich sich Grafiken im
+Stil der BBC mit ggplot2 erstellen lassen. Eine sehr schöne Einführung
+gibt es bei [Fundamentals of Data
+Visualization](https://clauswilke.com/dataviz/) (übrigens direkt in
+Markdown geschrieben). Sehr schön auf den Punkt mit vielen
+Code-Beispielen bringt das Kapitel
+[ggplot](https://www.produnis.de/R/Kapitel-StatistikMitR.html#Kapitel-ggplot)
+bei Statistik mit R und RStudio (übrigens sind die Einführungskapitel zu
+[R allgemein](https://www.produnis.de/R/Kapitel-REinfuhrung.html) und zu
+[tidyverse](https://www.produnis.de/R/Kapitel-Tidyverse.html) auch sehr
+gut zum Nacharbeiten, auch ohne Vorkenntnisse). In einer sehr
+ausführliche und nachvollziehbare Visualisierung zeigt Cedric Scherer,
+wie man [schöne
+Visualisierungen](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
+erstellt.
+
+Wir werden hier nur einfache Formen der Visualisierung kennen lernen und
+verwenden dafür das Paket ggplot2. Es gilt als eines der umfassendsten
+und flexibelsten Pakete für Visualisierungen aller Art. Einfacher werden
+Visualisierungen durch das Paket
+[esquisse](https://github.com/dreamRs/esquisse), das als RStudio-Add-in
+eine graphische Oberfläche für ggplot2 ermöglicht.
+[gglearn2](https://github.com/HLasse/gglearn2) ist eine tolle,
+interaktive Möglichkeit, sich die Funktionalität von ggplot2 selbst zu
+erschließen. Eine gute Einführung ist das [Tutorial zu ggplot 2bei
+Methodenlehre](https://methodenlehre.github.io/einfuehrung-in-R/grafiken-mit-ggplot2.html).
+
+## Daten vorbereiten
+
+
+## Welche Visualisierung für welche Daten?
+
+Es gibt viele Möglichkeiten, Daten zu visualisieren. Die Wahl einer
+"guten" Visualisierung liegt auch an den vorhandenen Daten, deren
+Codierung und Umfang. Eine sehr gute Übersicht über die Vor- und
+Nachteile der Visualisierung bietet <https://www.data-to-viz.com>.
+Ebenso hilfreich für die Arbeit mit ggplot2 ist [Cheatsheet
+(PDF)](https://raw.githubusercontent.com/rstudio/cheatsheets/main/translations/german/data-visualization_de.pdf)
+mit der Zusammenfassung der wichtigsten Befehle.
+
+## Funktionsweise von ggplot2
+
+Das Paket ggplot2 basiert auf die Idee des Tidyverse und einer
+"Grammatik der Visualisierung". Der Code ist auf dern ersten Blick etwas
+umständlich, lässt aber die Kontrolle über alle Darstellungsvariablen
+zu. Im Gegensatz zur pipe %\>% verwendet ggplot das plus innerhalb des
+Codes, um die Bedingungen für die einzelnen Elemente festzulegen
+
+Eine minimale Visualisierung besteht aus drei Zeilen
+
+1.  Wir müssen zunächst den **Datensatz** aufrufen, damit ggplot2
+    "weiß", welche Variablen zur Verfügung stehen.
+
+2.  Wir müssen festlegen, nach welcher **Ästhetik** die Visualisierung
+    umgesetzt werden soll: aes()
+
+3.  Danach wird festgelegt, wie die **grafischen Elemente** dargestellt
+    werden: geom\_(). Hier gibt es bereits viele vorgefertigte
+    Versionen, auf die man gut zurückgreifen kann.
+
+```{r Aufbau von ggplot2}
+
+# Wir verwenden den Datensatz s und erstellen eine neue Visualisierung
+# Dazu legen wir zunächst die Fläche (mapping) an, auf der die Visualisierung stattfinden soll.
+
+s_vis <- s %>% 
+	ggplot(mapping = 
+						aes(x = weight, 
+								y = height,
+								color = sex,
+								fill = sex)
+				 )
+s_vis
+# lege ein neues Objekt s_vis aus dem Datensatz s an: mapping
+# definiere die X und Y-Achse nah den Variablen: x und y
+# wähle Optional aus, ob Farben verwendet werden sollen: color und fill
+
+s_vis + geom_point()
+# füge das geom (also die Daten von X und Y-Achse) als einfaches Streudiagramm hinzu, d.h. die Punkte werden entlang der X- und Y-Achse positioniert
+
+
+s_vis + geom_jitter(size = 4, alpha = 0.6)
+# hier arbeiten wir auch mit einem Streudiagramm, fügen aber noch einige Argumente über die Größe (size) und Transparenz (alpha) der Punkte an.
+
+```
+
+ggplot(s) + \# ruft den Datensatz auf \
+aes() + \# legt die Werte fest, die verwendet werden sollen \
+geom() + legt die Art der Visualisierung fest.
+
+## Datenreihen
+
+Ein Histogramm trägt die Daten auf der horizontalen Achse (X-Achse) ab..
+Die Anzahl der einzelnen Abschnitte ist abhängig von den ausgewählten
+Daten.
+
+### Datenreihe als Histogramm
+
+Wir verwenden den students Datensatz. Uns interessiert nun, wie sich das
+Gewicht der Studierenden verteilt. Dazu werden die einzelnen Werte in
+"bins", also einzelne Abschnitte eingeteilt. Für das Beispiel verändern
+wir die Anzahl der "bins", die eine Art "Zoom" in den Datensatz
+ermöglichen.
+
+```{r Histogramm - Beispiele}
+
+# Beispiel 1: 
+
+w1 <- ggplot(s) + # verwende den Datensatz aus s
+  aes(x = weight) + # wähle als Wert für die x-Achse die Variable "weight"
+	geom_histogram(bins = 7) # wähle als Form ein Histogramm mit entsprechenden Balken
+
+w2 <- ggplot(s) +
+  aes(x = weight) +
+  geom_histogram(bins = 16L, fill = "#4682B4") +
+  labs(
+    x = "Gewicht",
+    y = "Anzahl",
+    title = "Gewichtsverteilung",
+    subtitle = "Gewicht in kg",
+    caption = "38 Studierende"
+  ) +
+  theme_minimal()
+
+w3 <- ggplot(s) +
+  aes(x = weight) +
+  geom_histogram(bins = 38L, fill = "#4682B4") +
+  labs(
+    x = "Gewicht",
+    y = "Anzahl",
+    title = "Gewichtsverteilung",
+    subtitle = "Gewicht in kg",
+    caption = "38 Studierende"
+  ) +
+  theme_minimal()
+
+w1
+w2
+w3
+```
+
+## Streudiagramme
+
+Streudiagramme sind besonders gut geeignet, den Zusammenhang zwischen
+zwei Variablen zu zeigen. Es lässt sich in ggplot leicht eine Trendlinie
+hinzufügen. Bei unserem Beispiel sehen wir gut den linearen Zusammenhang
+zwischen Größe und Gewicht (je größer desto schwerer bzw. auch je
+schwerer desto größer, natürlich mit einigen Abweichungen).
+
+```{r Streudiagramm - zwei Variablen Gewicht und Größe}
+
+ggplot(s) +
+  aes(x = weight, y = height, size = weight) +
+  geom_point(shape = "circle", colour = "#4682B4") +
+  geom_smooth(span = 1.00) +
+  labs(
+    title = "Zusammenhang Gewicht und Größe",
+    subtitle = "Streudiagramm auf zwei Achsen",
+    caption = "38 Studierende"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "left")
+
+
+```
+
+### Mehrdimensionale Diagramme
+
+Diagramme können viele Informationen abbilden. Dazu ist es sinnvoll,
+sich vor der Visualisierung eine Skizze zu machen.
+
+Wir fügen zwei weitere Informationen hinzu: a) Geschlecht als
+Farbcodierung und b) Gewicht als Größe der Punkte. Diese Informationen
+werden wieder bei aes() hinterlegt.
+
+```{r Mehrdimensionsionale Diagramme, fig.height=3, fig.width=4}
+
+ggplot(s) +
+  aes(x = weight, y = height, colour = sex, size = weight) +
+  geom_point(shape = "circle") +
+  scale_color_gradient(low = "#EF5AFF", high = "#048DF6") +
+  labs(
+    title = "Zusammenhang Gewicht und Größe und Geschlecht",
+    subtitle = "Streudiagramm auf zwei Achsen",
+    caption = "38 Studierende, Gewicht und Geschlecht visualisiert"
+  ) +
+	theme_minimal() +
+  theme(legend.position = "left")
+
+
+```
+
+Die Visualisierung zeigt, wie sich biologische Eigenschaften verteilen:
+Frauen sind tendenziell kleiner und leichter, Männer eher größer und
+schwerer. Es gibt in unserem Sample z.B. nur eine Frau über 1,80m, dafür
+sind aber vier von sechs Männer über 1,80cm. Um gesicherte Aussagen zu
+treffen müssten wir natürlich hier große Datensätze als Vergleich
+heranziehen. Beispielsweise zeigt die Statistik-Plattform des Bundes
+DeStasis, dass
+[Frauen](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Gesundheit/Gesundheitszustand-Relevantes-Verhalten/Tabellen/koerpermasse-frauen.html)
+zwischen 18 und 30 1,68 cm groß und 63kg schwer waren bzw.
+[Männer](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Gesundheit/Gesundheitszustand-Relevantes-Verhalten/Tabellen/liste-koerpermasse.html)
+1,81m groß und 78kg schwer sind (Stand Mikrozenus 2017).
+
+### Facetting: Teildiagrame erstellen
+
+Eine der faszinierendsten Funktionen bei ggplot2 ist das sogenannte
+facetting, damit werden facets, also Teilmengen der Daten aus dem
+Datensatz verwendet. Dies ist ähnliche wie eine Gruppierung. Dazu wird
+der Befehl facet_wrap() eingesetzt. Die Visualisierung wird dann
+automatisch nach den drei Werten für Geschlecht unterteilt.
+
+```{r Facetting nach Geschlecht}
+
+ggplot(s) +
+  aes(x = height, y = weight, colour = sex, size = weight) +
+  geom_point(shape = "circle") +
+  scale_color_gradient(low = "#EF5AFF", high = "#048DF6") +
+  theme_minimal() +
+  theme(legend.position = "left") +
+  facet_wrap(vars(sex))
+
+
+```
+
+### Aussagen mit Visualisierungen treffen
+
+Uns interessiert nun der Gesundheitszustand des Samples. Größe und
+Gewicht sind nur eingeschränkt aussagekräftig. Wir wollen deshalb den
+BMI-Index weiterverwenden:
+
+```{r BMI visualisieren }
+
+# Daten vorbereiten
+
+bmi <- s %>% # 
+  mutate(height = height/100) %>% # multipliziere die cm mit 100 um meter zu erhalten
+	mutate(bmi = weight/(height*height)) %>%  # lege eine neue Variable bmi an
+  select(id, height, weight, sex, age_real, bmi) 
+ # für eine einfachere Übersicht runde auf eine Dezimale
+
+bmi
+
+ggplot(bmi) +
+  aes(x = height, y = weight, colour = bmi, size = bmi) +
+  geom_point(shape = "circle") +
+  geom_smooth(span = 1L) +
+  scale_color_gradient(low = "#70DA27", high = "#F80000") +
+  labs(
+    title = "BMI-Index",
+    subtitle = "BMI in Abhängigkeit von Größe und Gewicht",
+    caption = "Je höher der BMI desto dunkler die Farbe und desto größer."
+  ) +
+  theme_minimal()
+
+```
+
+Ein BMI zwischen 19 und 25 gilt als in Ordnung, wobei das nur ein grober
+Indikator ist. Es geht in diesem Beispiel nicht darum, ob jemand als
+"dick" oder "dünn" gilt, sondern nur um den statistischen Zusammenhang
+zwischen Daten.
+
+## Weitere Quellen zu Visualisierung
+
+### Tutorials
+
+-   Das [R Flipbook
+    Tutorial](https://evamaerey.github.io/flipbooks/textbook) zeigt die
+    wichtigsten Schritte in R als Flipbooks, die gut und einfach
+    nachvollziehbar sind: ideal zum Selbstlernen.
