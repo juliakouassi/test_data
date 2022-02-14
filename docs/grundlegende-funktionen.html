@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Grundlegende Funktionen | Data Literacy Test</title>
+  <meta name="description" content="Chapter 2 Grundlegende Funktionen | Data Literacy Test" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Grundlegende Funktionen | Data Literacy Test" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Grundlegende Funktionen | Data Literacy Test" />
+  
+  
+  
+
+<meta name="author" content="Julia Kouassi" />
+
+
+<meta name="date" content="2022-02-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Test_Data </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setup</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#grundfähigkeiten"><i class="fa fa-check"></i><b>1.1</b> Grundfähigkeiten</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#dateien-speichern-und-verwalten"><i class="fa fa-check"></i><b>1.1.1</b> Dateien speichern und verwalten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lokale-installation"><i class="fa fa-check"></i><b>1.2</b> Lokale Installation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#quellen-und-literatur"><i class="fa fa-check"></i><b>1.3</b> Quellen und Literatur</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installation-von-programmbibliotheken"><i class="fa fa-check"></i><b>1.4</b> Installation von Programmbibliotheken</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#grundregeln-markdown"><i class="fa fa-check"></i><b>1.5</b> Grundregeln Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html"><i class="fa fa-check"></i><b>2</b> Grundlegende Funktionen</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#grundfunktionen-in-r"><i class="fa fa-check"></i><b>2.1</b> Grundfunktionen in R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#daten-sichern"><i class="fa fa-check"></i><b>2.1.1</b> <strong>Daten sichern</strong></a></li>
+<li class="chapter" data-level="2.1.2" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#grundrechenarten"><i class="fa fa-check"></i><b>2.1.2</b> Grundrechenarten</a></li>
+<li class="chapter" data-level="2.1.3" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#zuweisungen-und-variablen"><i class="fa fa-check"></i><b>2.1.3</b> Zuweisungen und Variablen</a></li>
+<li class="chapter" data-level="2.1.4" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#was-ist-guter-code"><i class="fa fa-check"></i><b>2.1.4</b> Was ist “guter” Code?</a></li>
+<li class="chapter" data-level="2.1.5" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#datentypen"><i class="fa fa-check"></i><b>2.1.5</b> Datentypen</a></li>
+<li class="chapter" data-level="2.1.6" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#listen-faktoren-und-data-frames"><i class="fa fa-check"></i><b>2.1.6</b> <strong>Listen, Faktoren und Data Frames</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Literacy Test</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="grundlegende-funktionen" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Grundlegende Funktionen</h1>
+<p>Die <strong>Welt von R</strong> besteht aus Objekten, Funktionen und Argumenten. Das
+ist ähnlich wie bei der Grammatik mit Objekten, Verben und Adverben.
+Prinzipiell werden alle Daten als <strong>Objekte</strong> behandelt, die durch
+<strong>Funktionen</strong>, also verbalisierte Befehle verändert werden können und
+sich mit <strong>Argumenten</strong> präziser beschrieben lassen.</p>
+<p>Ergebnisse werden bei R entweder in der Konsole als Code-Ausgabe oder im
+Code-Chunk angezeigt. In der Konsole wird jedem ausgeführten Befehl die
+[1] vorangestellt. Das kann verwirrend sein, wenn mehrere Befehle
+ausgeführt werden. Deshalb empfiehlt es sich, mehrere Funktionen
+zusammenzufassen oder im Chunk auszuführen.</p>
+<div id="grundfunktionen-in-r" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Grundfunktionen in R</h2>
+<div id="working-directory" class="section level4" number="2.1.0.1">
+<h4><span class="header-section-number">2.1.0.1</span> Working Directory</h4>
+<p>In der Working Directory, dem Arbeitsverzeichnis, werden automatisch die
+Dateien gespeichert. Es empfiehlt sich, das Arbeitsverzeichnis der
+Aufgabe entsprechend anzulegen und dort auch die Datenquellen abzulegen.</p>
+<p><strong>Projekte</strong></p>
+<p>Projekte speichern die Working Directory, die daran vorhandenen Dateien
+sowie offene Arbeitsprozesse. Dies eignet sich besonders für
+umfangreichere Projekte.</p>
+</div>
+<div id="daten-sichern" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> <strong>Daten sichern</strong></h3>
+<p>Wir arbeiten in der Regel mit Markdown-Dokumente, d.h. der Code ist
+direkt ins Dokument eingebettet. Manchmal ist es aber notwendig,
+bestimmte Daten in einem anderen Format zu sichern. Dazu lassen sich
+Daten speichern.</p>
+</div>
+<div id="grundrechenarten" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Grundrechenarten</h3>
+<p>Mit R können alle Grundrechenarten ausgeführt werden und nach Regeln
+verknüpft werden, <a href="https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf">Cheatsheet
+base-r</a>
+(PDF)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="grundlegende-funktionen.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Addition</span></span>
+<span id="cb4-2"><a href="grundlegende-funktionen.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="grundlegende-funktionen.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Substraktion</span></span>
+<span id="cb6-2"><a href="grundlegende-funktionen.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dv">15-3</span></span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="grundlegende-funktionen.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplikation</span></span>
+<span id="cb8-2"><a href="grundlegende-funktionen.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="grundlegende-funktionen.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Division</span></span>
+<span id="cb10-2"><a href="grundlegende-funktionen.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dv">64</span><span class="sc">/</span><span class="dv">8</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="grundlegende-funktionen.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verknüpfung einzelner Befehle (Klammerregeln beachten)</span></span>
+<span id="cb12-2"><a href="grundlegende-funktionen.html#cb12-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span><span class="sc">+</span><span class="dv">4</span>) <span class="sc">*</span> (<span class="dv">2</span>) <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="zuweisungen-und-variablen" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Zuweisungen und Variablen</h3>
+<p>Prinzipiell können Variablen nicht nur eine natürliche Zahl, sondern
+auch Text oder anderen Datentypen umfassen. Allerdings lassen sich
+unterschiedliche Datentypen nicht miteinander verarbeiten, z.B. lässt
+sich eine Zahl nicht durch einen Text teilen.</p>
+<p><strong>Objekte</strong> lassen sich durch den Zuweisungsbefehl &lt;- erstellen. Das
+bedeutet, dass einem Objekt ein bestimmter Wert zugeordnet wird. Das
+können natürliche Zahlen oder Texte sein. Objekte wiederum lassen sich
+direkt aufrufen oder weiter mit Funktionen verarbeiten. Funktionen
+funktionieren wie Verben, die einem Objekt sagen, was sie tun sollen.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="grundlegende-funktionen.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Text muss immer in Anführungszeichen als Objekt verwendet werden</span></span>
+<span id="cb14-2"><a href="grundlegende-funktionen.html#cb14-2" aria-hidden="true" tabindex="-1"></a>alter <span class="ot">&lt;-</span> <span class="dv">21</span></span>
+<span id="cb14-3"><a href="grundlegende-funktionen.html#cb14-3" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;Paul&quot;</span></span>
+<span id="cb14-4"><a href="grundlegende-funktionen.html#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="grundlegende-funktionen.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Einzelne Objekte</span></span>
+<span id="cb14-6"><a href="grundlegende-funktionen.html#cb14-6" aria-hidden="true" tabindex="-1"></a>alter</span></code></pre></div>
+<pre><code>## [1] 21</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="grundlegende-funktionen.html#cb16-1" aria-hidden="true" tabindex="-1"></a>name</span></code></pre></div>
+<pre><code>## [1] &quot;Paul&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="grundlegende-funktionen.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fehler beim Versuch, eine Funktion auszuführen</span></span>
+<span id="cb18-2"><a href="grundlegende-funktionen.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># name/alter</span></span></code></pre></div>
+</div>
+<div id="was-ist-guter-code" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Was ist “guter” Code?</h3>
+<p>Ein paar Grundregeln helfen, sich in R zurechtzufinden.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Erst denken, dann coden</strong>: Zunächst über das Problem, das sie
+lösen wollen, nachdenken. Manchmal hilft dazu eine Skizze, um
+Abhängigkeiten und Schritte zu klären.</li>
+<li><strong>Zerlegen</strong> Sie das Problem in überschaubare Schritte. Dann wird
+jedes Problem meist einfacher. Vor allem lässt sich jeder Schritt
+zurückverfolgen.</li>
+<li><strong>Code annotieren</strong>: guter Code ist annotiert, d.h. es ist jederzeit
+für die Autoren aber auch für Dritte nachvollziehbar, welche
+Codeschritte gemacht wurden. Diese Annotation findet direkt im Chunk
+mit der Raute # statt.</li>
+<li><strong>Eindeutige Bezeichnungen</strong> für Objekte: Objekte sollten immer
+eindeutig sein. Bewährt haben sich <strong>Unter_striche</strong>, um Objekte zu
+präzisieren. Vermeiden Sie Leerzeichen bei der Bezeichnung von
+Variablen. Lange Namen vermeiden und ggf. eine Annotation festlegen.</li>
+<li>Code <strong>reproduzierbar</strong> machen: Jeder Code muss reproduzierbar sein
+und zu gleichen Ergebnissen kommen. Mit dem Paket
+<a href="https://github.com/tidyverse/reprex">reprex</a> lassen sich
+reproducible examples erstellen.</li>
+<li><strong>Einfach</strong> statt verschachteln: Je nachvollziehbarer der Code ist,
+desto besser lassen sich Probleme vermeiden. Nutzen Sie dazu
+logische Operatoren und die Pipe %&gt;%. Einfacher Code ist auch
+<strong>eleganter</strong> Code: Guter Code folgt gewissen ästhetischen
+Grundregeln und ist auch für Menschen lesbar, d.h. in der Regeln
+wird für jede neue Funktion eine neue Zeile gewählt, die Pipe immer
+ans Ende der Zeile gestellt.</li>
+</ol>
+</div>
+<div id="datentypen" class="section level3" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Datentypen</h3>
+<p>Daten können unterschiedliche Formate annehmen. Die wichtigsten sind
+<strong>numerisch</strong> (numerical) und <strong>text</strong> (string/character) oder
+<strong>logisch</strong> (logical). Numerische Daten werden in integer (ganze
+natürliche Zahlen, z.B. 4, 12 und <strong>double</strong> (Zahlenwerte mit Dezimalen,
+etwa 12.42). Daten des <strong>gleichen Typs</strong> lassen sich über die c()
+Funktion in <strong>Vektoren</strong> zusammenfassen.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="grundlegende-funktionen.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datentypen lasen sich einfach überprüfen.</span></span>
+<span id="cb19-2"><a href="grundlegende-funktionen.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Schreibweisen beachten</span></span>
+<span id="cb19-3"><a href="grundlegende-funktionen.html#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="grundlegende-funktionen.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is_numeric</span>(<span class="dv">12</span>) <span class="co"># natürliche Zahlen</span></span></code></pre></div>
+<pre><code>## Warning: Deprecated</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="grundlegende-funktionen.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_character</span>(<span class="st">&quot;Joe&quot;</span>) <span class="co"># Text immer in Anführungszeichen</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="grundlegende-funktionen.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_logical</span>(<span class="cn">FALSE</span>) <span class="co"># Logische Operatoren immer in CAPS (Großbuchstaben)</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="grundlegende-funktionen.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectoren fassen verschiedene Daten des gleichen Typs zusammen:</span></span>
+<span id="cb26-2"><a href="grundlegende-funktionen.html#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="grundlegende-funktionen.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># numerischer Vector</span></span>
+<span id="cb26-4"><a href="grundlegende-funktionen.html#cb26-4" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">31</span>)</span>
+<span id="cb26-5"><a href="grundlegende-funktionen.html#cb26-5" aria-hidden="true" tabindex="-1"></a>age</span></code></pre></div>
+<pre><code>## [1] 19 20 25 31</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="grundlegende-funktionen.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Überprüfung des Vectors</span></span>
+<span id="cb28-2"><a href="grundlegende-funktionen.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is_character</span>(age)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="grundlegende-funktionen.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_numeric</span>(age)</span></code></pre></div>
+<pre><code>## Warning: Deprecated</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="grundlegende-funktionen.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector aus Textdaten</span></span>
+<span id="cb33-2"><a href="grundlegende-funktionen.html#cb33-2" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Miri&quot;</span>,<span class="st">&quot;Johanna&quot;</span>,<span class="st">&quot;Egon&quot;</span>,<span class="st">&quot;Amir&quot;</span>)</span>
+<span id="cb33-3"><a href="grundlegende-funktionen.html#cb33-3" aria-hidden="true" tabindex="-1"></a>names</span></code></pre></div>
+<pre><code>## [1] &quot;Miri&quot;    &quot;Johanna&quot; &quot;Egon&quot;    &quot;Amir&quot;</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="grundlegende-funktionen.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit numerischen Vektoren lassen sich alle mathematischen Operationen durchführen. Dabei wird jeder Wert einzeln berechnet.</span></span>
+<span id="cb35-2"><a href="grundlegende-funktionen.html#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="grundlegende-funktionen.html#cb35-3" aria-hidden="true" tabindex="-1"></a>age<span class="sc">/</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">20</span></span></code></pre></div>
+<pre><code>## [1] 190 200 250 310</code></pre>
+</div>
+<div id="listen-faktoren-und-data-frames" class="section level3" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> <strong>Listen, Faktoren und Data Frames</strong></h3>
+<p>Häufig werden unterschiedlichen Datentypen gemeinsam verwendet. Dazu
+werden v.a. <strong>Listen</strong> eingesetzt. Listen können (müssen aber nicht)
+unterschiedliche Datentypen beinhalten. <strong>Faktoren</strong> hingegen verwenden
+unterschiedliche Datentypen und verbinden diese miteinander.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="grundlegende-funktionen.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einzelne Vectoren mit Daten</span></span>
+<span id="cb37-2"><a href="grundlegende-funktionen.html#cb37-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">31</span>)</span>
+<span id="cb37-3"><a href="grundlegende-funktionen.html#cb37-3" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">52</span>,<span class="dv">68</span>,<span class="dv">76</span>)</span>
+<span id="cb37-4"><a href="grundlegende-funktionen.html#cb37-4" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">162</span>,<span class="dv">168</span>,<span class="dv">177</span>,<span class="dv">182</span>)</span>
+<span id="cb37-5"><a href="grundlegende-funktionen.html#cb37-5" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Miri&quot;</span>,<span class="st">&quot;Johanna&quot;</span>,<span class="st">&quot;Egon&quot;</span>,<span class="st">&quot;Michel&quot;</span>)</span>
+<span id="cb37-6"><a href="grundlegende-funktionen.html#cb37-6" aria-hidden="true" tabindex="-1"></a>sex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;female&quot;</span>,<span class="st">&quot;female&quot;</span>,<span class="st">&quot;male&quot;</span>,<span class="st">&quot;diverse&quot;</span>)</span>
+<span id="cb37-7"><a href="grundlegende-funktionen.html#cb37-7" aria-hidden="true" tabindex="-1"></a>semester <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb37-8"><a href="grundlegende-funktionen.html#cb37-8" aria-hidden="true" tabindex="-1"></a>study <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;PR&quot;</span>,<span class="st">&quot;PR&quot;</span>,<span class="st">&quot;CR&quot;</span>,<span class="st">&quot;CR&quot;</span>)</span>
+<span id="cb37-9"><a href="grundlegende-funktionen.html#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="grundlegende-funktionen.html#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Ein Vektor lässt sich direkt aufrufen und liefert dann die Werte des Vektors</span></span>
+<span id="cb37-11"><a href="grundlegende-funktionen.html#cb37-11" aria-hidden="true" tabindex="-1"></a>study</span></code></pre></div>
+<pre><code>## [1] &quot;PR&quot; &quot;PR&quot; &quot;CR&quot; &quot;CR&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="grundlegende-funktionen.html#cb39-1" aria-hidden="true" tabindex="-1"></a>sex</span></code></pre></div>
+<pre><code>## [1] &quot;female&quot;  &quot;female&quot;  &quot;male&quot;    &quot;diverse&quot;</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="grundlegende-funktionen.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># erstelle einzelne Vektoren</span></span>
+<span id="cb41-2"><a href="grundlegende-funktionen.html#cb41-2" aria-hidden="true" tabindex="-1"></a>profs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Bader&quot;</span>, <span class="st">&quot;Rinsdorf&quot;</span>, <span class="st">&quot;Kamps&quot;</span>)</span>
+<span id="cb41-3"><a href="grundlegende-funktionen.html#cb41-3" aria-hidden="true" tabindex="-1"></a>modul <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">226305</span>, <span class="dv">226308</span>)</span>
+<span id="cb41-4"><a href="grundlegende-funktionen.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="grundlegende-funktionen.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># führe die Vektoren unterschiedlicher Werte zusammen</span></span>
+<span id="cb41-6"><a href="grundlegende-funktionen.html#cb41-6" aria-hidden="true" tabindex="-1"></a>prof_modul <span class="ot">&lt;-</span> <span class="fu">list</span>(profs, modul)</span>
+<span id="cb41-7"><a href="grundlegende-funktionen.html#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="grundlegende-funktionen.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ruft die Liste mit den zuvor erstellen Werten auf</span></span>
+<span id="cb41-9"><a href="grundlegende-funktionen.html#cb41-9" aria-hidden="true" tabindex="-1"></a>prof_modul</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Bader&quot;    &quot;Rinsdorf&quot; &quot;Kamps&quot;   
+## 
+## [[2]]
+## [1] 226305 226308</code></pre>
+<p><strong>Dataframes</strong></p>
+<p>Dataframes sind einfache Verbindungen zwischen zwei oder mehreren
+Werten, die tabellarisch erstellt werden. Mit dem <strong>$-Operator</strong> lassen
+sich einzelne Spalten aufrufen.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="grundlegende-funktionen.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># einfachen Dataframe erstellen mit zwei Spalten</span></span>
+<span id="cb43-2"><a href="grundlegende-funktionen.html#cb43-2" aria-hidden="true" tabindex="-1"></a>age_weight  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age,weight)</span>
+<span id="cb43-3"><a href="grundlegende-funktionen.html#cb43-3" aria-hidden="true" tabindex="-1"></a>age_weight</span></code></pre></div>
+<pre><code>##   age weight
+## 1  19     50
+## 2  20     52
+## 3  25     68
+## 4  31     76</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="grundlegende-funktionen.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># umfangreicherer dataframe</span></span>
+<span id="cb45-2"><a href="grundlegende-funktionen.html#cb45-2" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age,weight,height,names,sex,semester,study)</span>
+<span id="cb45-3"><a href="grundlegende-funktionen.html#cb45-3" aria-hidden="true" tabindex="-1"></a>students</span></code></pre></div>
+<pre><code>##   age weight height   names     sex semester study
+## 1  19     50    162    Miri  female        2    PR
+## 2  20     52    168 Johanna  female        2    PR
+## 3  25     68    177    Egon    male        1    CR
+## 4  31     76    182  Michel diverse        4    CR</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="grundlegende-funktionen.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teile eines bestehenden Datenframes zu einem neuen Datenframe zusammenfügen</span></span>
+<span id="cb47-2"><a href="grundlegende-funktionen.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="grundlegende-funktionen.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># der $-Operator liefert die entsprechenden Daten</span></span>
+<span id="cb47-4"><a href="grundlegende-funktionen.html#cb47-4" aria-hidden="true" tabindex="-1"></a>name_study <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(students<span class="sc">$</span>names, students<span class="sc">$</span>study)</span>
+<span id="cb47-5"><a href="grundlegende-funktionen.html#cb47-5" aria-hidden="true" tabindex="-1"></a>name_study</span></code></pre></div>
+<pre><code>##   students.names students.study
+## 1           Miri             PR
+## 2        Johanna             PR
+## 3           Egon             CR
+## 4         Michel             CR</code></pre>
+<div id="tibbles" class="section level4" number="2.1.6.1">
+<h4><span class="header-section-number">2.1.6.1</span> Tibbles</h4>
+<p><a href="https://tibble.tidyverse.org">Tibbles</a> sind die vereinfachte Variante
+eines Dataframes im tidyverse und einfacher zu behandeln. Jede Zeile ist
+eine Beobachtung bzw. Fall und jede Spalte stellt eine Variable dar.
+Damit lassen sich Inhalte viel einfacher analysieren und darstellen.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="grundlegende-funktionen.html#cb49-1" aria-hidden="true" tabindex="-1"></a>students</span></code></pre></div>
+<pre><code>##   age weight height   names     sex semester study
+## 1  19     50    162    Miri  female        2    PR
+## 2  20     52    168 Johanna  female        2    PR
+## 3  25     68    177    Egon    male        1    CR
+## 4  31     76    182  Michel diverse        4    CR</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="grundlegende-funktionen.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wandelt den data.frame students in das tibble stib um</span></span>
+<span id="cb51-2"><a href="grundlegende-funktionen.html#cb51-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(students)</span>
+<span id="cb51-3"><a href="grundlegende-funktionen.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is_tibble</span>(s)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="grundlegende-funktionen.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Glimpse liefert eine Übersicht über den Datensatz, die entsprechenden Variablen in den Spalten und deren Kodierung</span></span>
+<span id="cb53-2"><a href="grundlegende-funktionen.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(s)</span></code></pre></div>
+<pre><code>## Rows: 4
+## Columns: 7
+## $ age      &lt;dbl&gt; 19, 20, 25, 31
+## $ weight   &lt;dbl&gt; 50, 52, 68, 76
+## $ height   &lt;dbl&gt; 162, 168, 177, 182
+## $ names    &lt;fct&gt; Miri, Johanna, Egon, Michel
+## $ sex      &lt;fct&gt; female, female, male, diverse
+## $ semester &lt;dbl&gt; 2, 2, 1, 4
+## $ study    &lt;fct&gt; PR, PR, CR, CR</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="grundlegende-funktionen.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Werte lassen sich direkt aus dem tibble mit $ auslesen</span></span>
+<span id="cb55-2"><a href="grundlegende-funktionen.html#cb55-2" aria-hidden="true" tabindex="-1"></a>s<span class="sc">$</span>names</span></code></pre></div>
+<pre><code>## [1] Miri    Johanna Egon    Michel 
+## Levels: Egon Johanna Michel Miri</code></pre>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/juliakouassi/test_data/edit/master/02-tears.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/juliakouassi/test_data/blob/master/02-tears.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
