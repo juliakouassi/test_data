@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Datenanalyse mit dplyr | Data Literacy Test</title>
+  <meta name="description" content="Chapter 5 Datenanalyse mit dplyr | Data Literacy Test" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Datenanalyse mit dplyr | Data Literacy Test" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Datenanalyse mit dplyr | Data Literacy Test" />
+  
+  
+  
+
+<meta name="author" content="Julia Kouassi" />
+
+
+<meta name="date" content="2022-02-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="daten-importieren.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Test_Data </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setup</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#grundfähigkeiten"><i class="fa fa-check"></i><b>1.1</b> Grundfähigkeiten</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#dateien-speichern-und-verwalten"><i class="fa fa-check"></i><b>1.1.1</b> Dateien speichern und verwalten</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lokale-installation"><i class="fa fa-check"></i><b>1.2</b> Lokale Installation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#quellen-und-literatur"><i class="fa fa-check"></i><b>1.3</b> Quellen und Literatur</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installation-von-programmbibliotheken"><i class="fa fa-check"></i><b>1.4</b> Installation von Programmbibliotheken</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#grundregeln-markdown"><i class="fa fa-check"></i><b>1.5</b> Grundregeln Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html"><i class="fa fa-check"></i><b>2</b> Grundlegende Funktionen</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#grundfunktionen-in-r"><i class="fa fa-check"></i><b>2.1</b> Grundfunktionen in R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#daten-sichern"><i class="fa fa-check"></i><b>2.1.1</b> <strong>Daten sichern</strong></a></li>
+<li class="chapter" data-level="2.1.2" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#grundrechenarten"><i class="fa fa-check"></i><b>2.1.2</b> Grundrechenarten</a></li>
+<li class="chapter" data-level="2.1.3" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#zuweisungen-und-variablen"><i class="fa fa-check"></i><b>2.1.3</b> Zuweisungen und Variablen</a></li>
+<li class="chapter" data-level="2.1.4" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#was-ist-guter-code"><i class="fa fa-check"></i><b>2.1.4</b> Was ist “guter” Code?</a></li>
+<li class="chapter" data-level="2.1.5" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#datentypen"><i class="fa fa-check"></i><b>2.1.5</b> Datentypen</a></li>
+<li class="chapter" data-level="2.1.6" data-path="grundlegende-funktionen.html"><a href="grundlegende-funktionen.html#listen-faktoren-und-data-frames"><i class="fa fa-check"></i><b>2.1.6</b> <strong>Listen, Faktoren und Data Frames</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html"><i class="fa fa-check"></i><b>3</b> Daten bereinigen (tidy data)</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html#tidyr"><i class="fa fa-check"></i><b>3.0.1</b> tidyr</a></li>
+<li class="chapter" data-level="3.0.2" data-path="daten-bereinigen-tidy-data.html"><a href="daten-bereinigen-tidy-data.html#tibbles-1"><i class="fa fa-check"></i><b>3.0.2</b> Tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="daten-importieren.html"><a href="daten-importieren.html"><i class="fa fa-check"></i><b>4</b> Daten importieren</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="daten-importieren.html"><a href="daten-importieren.html#datenimport"><i class="fa fa-check"></i><b>4.1</b> Datenimport</a></li>
+<li class="chapter" data-level="4.2" data-path="daten-importieren.html"><a href="daten-importieren.html#übersicht-über-daten"><i class="fa fa-check"></i><b>4.2</b> Übersicht über Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html"><i class="fa fa-check"></i><b>5</b> Datenanalyse mit dplyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#daten-selektieren"><i class="fa fa-check"></i><b>5.1</b> Daten selektieren</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#zeilen-manipulierenfiltern"><i class="fa fa-check"></i><b>5.1.1</b> Zeilen manipulieren/filtern</a></li>
+<li class="chapter" data-level="5.1.2" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#spalten-manipulieren"><i class="fa fa-check"></i><b>5.1.2</b> Spalten manipulieren</a></li>
+<li class="chapter" data-level="5.1.3" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#werte-gruppieren"><i class="fa fa-check"></i><b>5.1.3</b> Werte gruppieren</a></li>
+<li class="chapter" data-level="5.1.4" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#mittelwerte-berechnen-und-speichern"><i class="fa fa-check"></i><b>5.1.4</b> Mittelwerte berechnen und speichern</a></li>
+<li class="chapter" data-level="5.1.5" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#spalten-umbennen"><i class="fa fa-check"></i><b>5.1.5</b> Spalten umbennen</a></li>
+<li class="chapter" data-level="5.1.6" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#werte-recodieren-bzw.-umbennen"><i class="fa fa-check"></i><b>5.1.6</b> Werte recodieren bzw. umbennen</a></li>
+<li class="chapter" data-level="5.1.7" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#exkurs-tabellen-einfach-erstellen"><i class="fa fa-check"></i><b>5.1.7</b> Exkurs: Tabellen einfach erstellen</a></li>
+<li class="chapter" data-level="5.1.8" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#kür-verschiedene-bedingungen-kombinieren"><i class="fa fa-check"></i><b>5.1.8</b> Kür: verschiedene Bedingungen kombinieren</a></li>
+<li class="chapter" data-level="5.1.9" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#zusammenfassung-daten-manipulieren"><i class="fa fa-check"></i><b>5.1.9</b> Zusammenfassung Daten manipulieren</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="datenanalyse-mit-dplyr.html"><a href="datenanalyse-mit-dplyr.html#tidydata-tutor"><i class="fa fa-check"></i><b>5.2</b> Tidydata Tutor</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Literacy Test</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="datenanalyse-mit-dplyr" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Datenanalyse mit dplyr</h1>
+<div id="daten-selektieren" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Daten selektieren</h2>
+<p>Eine Kernfunktion in der Datenanalyse ist es, Daten nach bestimmten
+Werten zu selektieren. Es ist wichtig sich zuvor zu überlegen, nach
+welchen Werte selektiert werden soll. Prinzipiell kann nach Zeilen oder
+Spalten selektiert werden, <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Cheatsheet
+dplyr</a>.</p>
+<div id="zeilen-manipulierenfiltern" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Zeilen manipulieren/filtern</h3>
+<p>Generell: wir erstellen keinen neuen Datensatz, sondern manipulieren den
+bestehenden Datensatz students. Dazu verwenden wir den Befehl filter().
+Damit wird kein neuer Datensatz erstellt, sondern der bestehende
+Datensatz verändert.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="datenanalyse-mit-dplyr.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nach Zeilenattribut selektieren, z.B.</span></span>
+<span id="cb79-2"><a href="datenanalyse-mit-dplyr.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tätowierte Frauen aus Stuttgart</span></span>
+<span id="cb79-3"><a href="datenanalyse-mit-dplyr.html#cb79-3" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>, tatoo <span class="sc">==</span> <span class="dv">2</span>, location <span class="sc">==</span> <span class="st">&quot;Stuttgart&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 16
+##      id  name name_first   sex  crpr height weight   age age_real smoke phone tatoo  eyes  hair location  county
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt; 
+## 1     1     1 Charlotte      1     1    167     57     2       21     1     1     2     4     2 Stuttgart BW    
+## 2     7     7 Maria          1     2    172     64     2       20     1     1     2     3     4 Stuttgart BW    
+## 3    20    20 Julia          1     1    170     52     1       19     1     2     2     2     3 Stuttgart BW    
+## 4    27    27 Merle          1     2    162     52     2       21     1     1     2     2     4 Stuttgart BW</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="datenanalyse-mit-dplyr.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Werte sortieren</span></span>
+<span id="cb81-2"><a href="datenanalyse-mit-dplyr.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nach genauem Alter</span></span>
+<span id="cb81-3"><a href="datenanalyse-mit-dplyr.html#cb81-3" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(age_real)</span></code></pre></div>
+<pre><code>## # A tibble: 38 x 16
+##       id  name name_first   sex  crpr height weight   age age_real smoke phone tatoo  eyes  hair location     county
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; 
+##  1    24    24 Rana           1     1    159     49     1       17     1     1     1     2     4 Sindelfingen BW    
+##  2     5     5 Anna           1     2    163     52     1       18     1     2     1     4     4 Kempten      BAY   
+##  3    15    15 Maja           1     2    162     58     1       18     2     1     1     3     2 Ravensburg   BW    
+##  4    19    19 Andrea         3     1    166     54     1       18     2     2     1     3     4 Stuttgart    BW    
+##  5    25    25 Samira         1     1    162     50     1       18     1     2     1     2     3 Stuttgart    BW    
+##  6    32    32 Dana           1     1    172     58     1       18     1     1     1     4     2 Leonberg     BW    
+##  7    34    34 Elisa          1     1    172     66     1       18     1     2     1     1     4 Ulm          BW    
+##  8    35    35 Leonie         1     1    169     57     1       18     1     2     1     2     3 Karlsruhe    BW    
+##  9    11    11 Daniel         2     1    188     78     1       19     2     1     1     3     3 Konstanz     BW    
+## 10    18    18 Mia            1     1    168     54     1       19     1     1     1     4     4 Esslingen    BW    
+## # ... with 28 more rows</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="datenanalyse-mit-dplyr.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># absteigend sortieren nach Größe (größter Wert zuerst)</span></span>
+<span id="cb83-2"><a href="datenanalyse-mit-dplyr.html#cb83-2" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(height))</span></code></pre></div>
+<pre><code>## # A tibble: 38 x 16
+##       id  name name_first   sex  crpr height weight   age age_real smoke phone tatoo  eyes  hair location     county
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; 
+##  1    23    23 Ben            2     1    189     83     4       25     2     2     2     1     4 Stuttgart    BW    
+##  2    11    11 Daniel         2     1    188     78     1       19     2     1     1     3     3 Konstanz     BW    
+##  3     9     9 Karl           2     1    184     82     4       26     2     2     1     3     4 Leonberg     BW    
+##  4    37    37 Sarah          1     2    184     60     1       19     1     2     1     2     2 Frankfurt    HE    
+##  5    31    31 Luca           2     1    183     74     2       21     1     1     1     3     4 Stuttgart    BW    
+##  6    16    16 Dejan          2     2    179     66     3       23     1     2     1     3     3 Karlsruhe    BW    
+##  7    28    28 Maris          3     2    178     65     4       25     1     2     2     4     4 Hamburg      HH    
+##  8     6     6 Ruth           1     2    177     63     2       20     1     2     1     3     2 Ludwigshafen RP    
+##  9    29    29 Sina           1     2    177     59     4       26     1     1     1     2     3 Stuttgart    BW    
+## 10    17    17 Ellie          3     1    176     64     4       25     1     2     2     1     4 Ulm          BW    
+## # ... with 28 more rows</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="datenanalyse-mit-dplyr.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teile des Datensatzes auswählen</span></span>
+<span id="cb85-2"><a href="datenanalyse-mit-dplyr.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selektiere die drei Fälle mit dem höchsten Gewicht</span></span>
+<span id="cb85-3"><a href="datenanalyse-mit-dplyr.html#cb85-3" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(weight, <span class="at">n=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 16
+##      id  name name_first   sex  crpr height weight   age age_real smoke phone tatoo  eyes  hair location  county
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt; 
+## 1    23    23 Ben            2     1    189     83     4       25     2     2     2     1     4 Stuttgart BW    
+## 2     9     9 Karl           2     1    184     82     4       26     2     2     1     3     4 Leonberg  BW    
+## 3    11    11 Daniel         2     1    188     78     1       19     2     1     1     3     3 Konstanz  BW</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="datenanalyse-mit-dplyr.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zeige die fünf leichtesten Personen</span></span>
+<span id="cb87-2"><a href="datenanalyse-mit-dplyr.html#cb87-2" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> <span class="fu">slice_min</span>(weight, <span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 8 x 16
+##      id  name name_first   sex  crpr height weight   age age_real smoke phone tatoo  eyes  hair location     county
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; 
+## 1    38    38 Zuleika        1     1    162     48     4       27     2     1     1     4     3 Filderstadt  BW    
+## 2    24    24 Rana           1     1    159     49     1       17     1     1     1     2     4 Sindelfingen BW    
+## 3    25    25 Samira         1     1    162     50     1       18     1     2     1     2     3 Stuttgart    BW    
+## 4     5     5 Anna           1     2    163     52     1       18     1     2     1     4     4 Kempten      BAY   
+## 5    20    20 Julia          1     1    170     52     1       19     1     2     2     2     3 Stuttgart    BW    
+## 6    22    22 Yara           1     2    162     52     3       22     2     1     2     4     4 Wiesbaden    HE    
+## 7    27    27 Merle          1     2    162     52     2       21     1     1     2     2     4 Stuttgart    BW    
+## 8    36    36 Johanna        1     2    164     52     2       21     1     2     1     2     1 Stuttgart    BW</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="datenanalyse-mit-dplyr.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Achtung: hier werden 8 Datensätze ausgegeben, weil fünf Personen jeweils 52 kg wiegen. </span></span></code></pre></div>
+<p>Wir sind den Code jetzt Zeile für Zeile durchgegangen. Eleganter ist es,
+wenn dies alles in einem Codechunk passiert. Dazu lassen sich logische
+Operatoren verbinden. Im Beispiel von filter geht sowohl die
+Aneinanderreihung der Angaben als auch die Verbindung mit dem logischen
+Operator “&amp;”. Für die bessere Lesbarkeit des Codes macht &amp; in diesem
+Fall mehr Sinn.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="datenanalyse-mit-dplyr.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ziel: Wir möchten tätowierte Frauen aus Stuttgart absteigend sortiert nach Größe </span></span>
+<span id="cb90-2"><a href="datenanalyse-mit-dplyr.html#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="datenanalyse-mit-dplyr.html#cb90-3" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> </span>
+<span id="cb90-4"><a href="datenanalyse-mit-dplyr.html#cb90-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> tatoo <span class="sc">==</span> <span class="dv">2</span> <span class="sc">&amp;</span> location <span class="sc">==</span> <span class="st">&quot;Stuttgart&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb90-5"><a href="datenanalyse-mit-dplyr.html#cb90-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(height))</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 16
+##      id  name name_first   sex  crpr height weight   age age_real smoke phone tatoo  eyes  hair location  county
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt; 
+## 1     7     7 Maria          1     2    172     64     2       20     1     1     2     3     4 Stuttgart BW    
+## 2    20    20 Julia          1     1    170     52     1       19     1     2     2     2     3 Stuttgart BW    
+## 3     1     1 Charlotte      1     1    167     57     2       21     1     1     2     4     2 Stuttgart BW    
+## 4    27    27 Merle          1     2    162     52     2       21     1     1     2     2     4 Stuttgart BW</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="datenanalyse-mit-dplyr.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ergebnis: Von den vier Frauen ist Maria mit 1,72 cm am größten und Merle mit 1,62 cm am kleinsten. </span></span></code></pre></div>
+<div id="neuen-datensatz-erstellen" class="section level4" number="5.1.1.1">
+<h4><span class="header-section-number">5.1.1.1</span> Neuen Datensatz erstellen</h4>
+<p>Um einen <strong>neuen Datensatz</strong> zu erstellen verwenden wir die
+Zuweisungsfunktion. Das ist wichtig, nur so die Ergebnisse gespeichert
+werden.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="datenanalyse-mit-dplyr.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># neuen Datensatz der tätowierten Frauen aus Stuttgart erstellen, der nach Alter sortiert ist</span></span>
+<span id="cb93-2"><a href="datenanalyse-mit-dplyr.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="datenanalyse-mit-dplyr.html#cb93-3" aria-hidden="true" tabindex="-1"></a>s_fem_tat_age <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span> </span>
+<span id="cb93-4"><a href="datenanalyse-mit-dplyr.html#cb93-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>, tatoo <span class="sc">==</span> <span class="dv">2</span>, location <span class="sc">==</span> <span class="st">&quot;Stuttgart&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb93-5"><a href="datenanalyse-mit-dplyr.html#cb93-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(age_real)</span>
+<span id="cb93-6"><a href="datenanalyse-mit-dplyr.html#cb93-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-7"><a href="datenanalyse-mit-dplyr.html#cb93-7" aria-hidden="true" tabindex="-1"></a><span class="co"># der neue Datensatz kann nun eigenständig weiter bearbeitet werden</span></span>
+<span id="cb93-8"><a href="datenanalyse-mit-dplyr.html#cb93-8" aria-hidden="true" tabindex="-1"></a>s_fem_tat_age</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 16
+##      id  name name_first   sex  crpr height weight   age age_real smoke phone tatoo  eyes  hair location  county
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt; 
+## 1    20    20 Julia          1     1    170     52     1       19     1     2     2     2     3 Stuttgart BW    
+## 2     7     7 Maria          1     2    172     64     2       20     1     1     2     3     4 Stuttgart BW    
+## 3     1     1 Charlotte      1     1    167     57     2       21     1     1     2     4     2 Stuttgart BW    
+## 4    27    27 Merle          1     2    162     52     2       21     1     1     2     2     4 Stuttgart BW</code></pre>
+</div>
+</div>
+<div id="spalten-manipulieren" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Spalten manipulieren</h3>
+<p>Während sich die <strong>Zeilen</strong> auf <strong>einzelne Fälle</strong> beziehen (also in
+unserem Beispiel Studierende aus dem Datensatz) definieren die
+<strong>Spalten</strong> die <strong>Variablen</strong> des Datensatzes.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="datenanalyse-mit-dplyr.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wir lesen das Objekt s erneut ein:</span></span>
+<span id="cb95-2"><a href="datenanalyse-mit-dplyr.html#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-3"><a href="datenanalyse-mit-dplyr.html#cb95-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification ---------------------------------------------------------------------------------------------------------------------
+## cols(
+##   id = col_double(),
+##   name = col_double(),
+##   name_first = col_character(),
+##   sex = col_double(),
+##   crpr = col_double(),
+##   height = col_double(),
+##   weight = col_double(),
+##   age = col_double(),
+##   age_real = col_double(),
+##   smoke = col_double(),
+##   phone = col_double(),
+##   tatoo = col_double(),
+##   eyes = col_double(),
+##   hair = col_double(),
+##   location = col_character(),
+##   county = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="datenanalyse-mit-dplyr.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einzelne Spalten selektieren</span></span>
+<span id="cb97-2"><a href="datenanalyse-mit-dplyr.html#cb97-2" aria-hidden="true" tabindex="-1"></a>vornamen <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span></span>
+<span id="cb97-3"><a href="datenanalyse-mit-dplyr.html#cb97-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name_first)</span>
+<span id="cb97-4"><a href="datenanalyse-mit-dplyr.html#cb97-4" aria-hidden="true" tabindex="-1"></a>vornamen</span></code></pre></div>
+<pre><code>## # A tibble: 38 x 1
+##    name_first
+##    &lt;chr&gt;     
+##  1 Charlotte 
+##  2 Jana      
+##  3 Lena      
+##  4 Serena    
+##  5 Anna      
+##  6 Ruth      
+##  7 Maria     
+##  8 Eva       
+##  9 Karl      
+## 10 Ahmed     
+## # ... with 28 more rows</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="datenanalyse-mit-dplyr.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mehrere Spalten selektieren</span></span>
+<span id="cb99-2"><a href="datenanalyse-mit-dplyr.html#cb99-2" aria-hidden="true" tabindex="-1"></a>crpr_sex <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span></span>
+<span id="cb99-3"><a href="datenanalyse-mit-dplyr.html#cb99-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name_first, sex, crpr)</span>
+<span id="cb99-4"><a href="datenanalyse-mit-dplyr.html#cb99-4" aria-hidden="true" tabindex="-1"></a>crpr_sex</span></code></pre></div>
+<pre><code>## # A tibble: 38 x 3
+##    name_first   sex  crpr
+##    &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+##  1 Charlotte      1     1
+##  2 Jana           1     1
+##  3 Lena           1     1
+##  4 Serena         1     2
+##  5 Anna           1     2
+##  6 Ruth           1     2
+##  7 Maria          1     2
+##  8 Eva            1     1
+##  9 Karl           2     1
+## 10 Ahmed          2     2
+## # ... with 28 more rows</code></pre>
+<p>Häufig ist es wichtig, Variablen umzubenennen, um eine bessere
+Lesbarkeit der Daten zu erreichen. Dazu verwenden wir den Befehl
+rename(). Achtung: der neue Wert wird zuerst genannt, dann der Wert, der
+umgeschrieben werden soll.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="datenanalyse-mit-dplyr.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variablen umbenennen. Achtung: der neue Wert muss zuerst in der Funktion genannt werden.</span></span>
+<span id="cb101-2"><a href="datenanalyse-mit-dplyr.html#cb101-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span> </span>
+<span id="cb101-3"><a href="datenanalyse-mit-dplyr.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">geschlecht =</span> sex) <span class="sc">%&gt;%</span></span>
+<span id="cb101-4"><a href="datenanalyse-mit-dplyr.html#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, geschlecht)</span>
+<span id="cb101-5"><a href="datenanalyse-mit-dplyr.html#cb101-5" aria-hidden="true" tabindex="-1"></a>s2 <span class="co"># wir haben zwei Spalten mit name und geschlecht selektiert</span></span></code></pre></div>
+<pre><code>## # A tibble: 38 x 2
+##     name geschlecht
+##    &lt;dbl&gt;      &lt;dbl&gt;
+##  1     1          1
+##  2     2          1
+##  3     3          1
+##  4     4          1
+##  5     5          1
+##  6     6          1
+##  7     7          1
+##  8     8          1
+##  9     9          2
+## 10    10          2
+## # ... with 28 more rows</code></pre>
+</div>
+<div id="werte-gruppieren" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Werte gruppieren</h3>
+<p>Häufig ist es notwendig, Werte nach bestimmten Gruppen zusammenzufassen.
+Dies ermöglicht einen besseren Vergleich der Daten. Dazu verwenden wir
+die Funktion group_by(). Hier können ein oder mehrere Bedingungen
+angegeben werden. Achtung: wenn eine Gruppe angelegt wird, bleibt diese
+bestehen. Deshalb sollten Gruppen immer wieder mit ungroup() augelöst
+werden, wenn sie nicht mehr benötigt werden.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="datenanalyse-mit-dplyr.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfache Zählungen nach einer Variable in neuem Datensatz</span></span>
+<span id="cb103-2"><a href="datenanalyse-mit-dplyr.html#cb103-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-3"><a href="datenanalyse-mit-dplyr.html#cb103-3" aria-hidden="true" tabindex="-1"></a>crpr <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span> </span>
+<span id="cb103-4"><a href="datenanalyse-mit-dplyr.html#cb103-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(crpr) <span class="sc">%&gt;%</span> <span class="co"># gruppiert die Werte nach Variable Vertiefung</span></span>
+<span id="cb103-5"><a href="datenanalyse-mit-dplyr.html#cb103-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="sc">%&gt;%</span> <span class="co"># zählt die entsprechenden Fälle</span></span>
+<span id="cb103-6"><a href="datenanalyse-mit-dplyr.html#cb103-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb103-7"><a href="datenanalyse-mit-dplyr.html#cb103-7" aria-hidden="true" tabindex="-1"></a>crpr</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##    crpr     n
+##   &lt;dbl&gt; &lt;int&gt;
+## 1     1    23
+## 2     2    15</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="datenanalyse-mit-dplyr.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaches Auszählen von Variablen </span></span>
+<span id="cb105-2"><a href="datenanalyse-mit-dplyr.html#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-3"><a href="datenanalyse-mit-dplyr.html#cb105-3" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> </span>
+<span id="cb105-4"><a href="datenanalyse-mit-dplyr.html#cb105-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(age) <span class="sc">%&gt;%</span> <span class="co"># gruppiert die Werte nach Variable</span></span>
+<span id="cb105-5"><a href="datenanalyse-mit-dplyr.html#cb105-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="co"># zählt die entsprechenden Fälle</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+## # Groups:   age [4]
+##     age     n
+##   &lt;dbl&gt; &lt;int&gt;
+## 1     1    12
+## 2     2    13
+## 3     3     5
+## 4     4     8</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="datenanalyse-mit-dplyr.html#cb107-1" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> </span>
+<span id="cb107-2"><a href="datenanalyse-mit-dplyr.html#cb107-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(age_real) <span class="sc">%&gt;%</span> <span class="co"># gruppiert die Werte nach Variable</span></span>
+<span id="cb107-3"><a href="datenanalyse-mit-dplyr.html#cb107-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="co"># zählt die entsprechenden Fälle</span></span></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+## # Groups:   age_real [10]
+##    age_real     n
+##       &lt;dbl&gt; &lt;int&gt;
+##  1       17     1
+##  2       18     7
+##  3       19     4
+##  4       20     4
+##  5       21     8
+##  6       22     2
+##  7       23     4
+##  8       25     4
+##  9       26     3
+## 10       27     1</code></pre>
+<p>Natürlich lassen sich auch zwei Variablen gruppieren und zählen.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="datenanalyse-mit-dplyr.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zwei Variablen gruppieren</span></span>
+<span id="cb109-2"><a href="datenanalyse-mit-dplyr.html#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="datenanalyse-mit-dplyr.html#cb109-3" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> </span>
+<span id="cb109-4"><a href="datenanalyse-mit-dplyr.html#cb109-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span> (crpr, tatoo) <span class="sc">%&gt;%</span> <span class="co"># gruppiert die Werte nach Variable</span></span>
+<span id="cb109-5"><a href="datenanalyse-mit-dplyr.html#cb109-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="co"># zählt die entsprechenden Fälle</span></span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+## # Groups:   crpr, tatoo [4]
+##    crpr tatoo     n
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1     1     1    18
+## 2     1     2     5
+## 3     2     1    11
+## 4     2     2     4</code></pre>
+</div>
+<div id="mittelwerte-berechnen-und-speichern" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Mittelwerte berechnen und speichern</h3>
+<p>Häufig interessieren uns nicht die Einzelwerte, wie oben, sondern
+aggregierte Mittelwerte. Ein Mittelwert (mean) teilt die Summe aller
+Werte durch ihre Anzahl und liefert so einen besseren Vergleich. Es ist
+einer der einfachsten Werte der deskriptiven Statistk, den wir berechnen
+können. In diesem Beispiel wollen wir die Mittelwerte berechnen und
+verwenden dazu die summarize() Funktion.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="datenanalyse-mit-dplyr.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># direkter Aufruf des Mittelwert des Alters aus dem Datensatz s</span></span>
+<span id="cb111-2"><a href="datenanalyse-mit-dplyr.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(s<span class="sc">$</span>age_real) </span></code></pre></div>
+<pre><code>## [1] 21.26316</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="datenanalyse-mit-dplyr.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># damit wird der Mittelwert aller Werte einer Variable berechnet.</span></span>
+<span id="cb113-2"><a href="datenanalyse-mit-dplyr.html#cb113-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-3"><a href="datenanalyse-mit-dplyr.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Durchschnittsgröße nach Geschlecht</span></span>
+<span id="cb113-4"><a href="datenanalyse-mit-dplyr.html#cb113-4" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> </span>
+<span id="cb113-5"><a href="datenanalyse-mit-dplyr.html#cb113-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> <span class="co"># gruppiert nach Geschlecht</span></span>
+<span id="cb113-6"><a href="datenanalyse-mit-dplyr.html#cb113-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">mean</span>(height)) <span class="sc">%&gt;%</span> <span class="co"># berechnet die Durchschnittsgröße</span></span>
+<span id="cb113-7"><a href="datenanalyse-mit-dplyr.html#cb113-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># verwendet nur eine Dezimalstelle</span></span>
+<span id="cb113-8"><a href="datenanalyse-mit-dplyr.html#cb113-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##     sex `mean(height)`
+##   &lt;dbl&gt;          &lt;dbl&gt;
+## 1     1           168.
+## 2     2           183.
+## 3     3           173.</code></pre>
+<p><strong>Mutate: neue Variablen anlegen und berechnen</strong></p>
+<p>Mit mutate() lassen sich neue Variablen anlegen bzw. bestehende Werte
+umrechnen. Das ist wichtig, um Werte ins Verhältnis zu setzen.
+Verhältniswerte nennen wir auch Prozent, d.h. Prozentwerte messen den
+Anteil eines Wertes von 100. Prozentwerte geben immer Verhältnisse an
+und sind so besser zu verstehen. Dazu wird der gesuchte Wert mit der
+Gesamtzahl geteilt und mit 100 multipliziert. Zudem lassen sich mit
+mutate() die Variablen und Beobachtungen umcodieren.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="datenanalyse-mit-dplyr.html#cb115-1" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> </span>
+<span id="cb115-2"><a href="datenanalyse-mit-dplyr.html#cb115-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb115-3"><a href="datenanalyse-mit-dplyr.html#cb115-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># count erstellt eine neue Spalte mit &quot;n&quot; für die Häufigkeiten</span></span>
+<span id="cb115-4"><a href="datenanalyse-mit-dplyr.html#cb115-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">percent =</span> n<span class="sc">/</span><span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb115-5"><a href="datenanalyse-mit-dplyr.html#cb115-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># mutate erstellt eine neue Spalte &quot;percent&quot; und berechnet dort die Häufigkeiten von n, geteilt durch die Summe von n multipliziert mal 100. </span></span>
+<span id="cb115-6"><a href="datenanalyse-mit-dplyr.html#cb115-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##     sex     n percent
+##   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1     1    29   76.3 
+## 2     2     6   15.8 
+## 3     3     3    7.89</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="datenanalyse-mit-dplyr.html#cb117-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rundet die Werte auf 2 Dezimalstellen</span></span></code></pre></div>
+<p>Wir sehen jetzt, dass rund drei Viertel der Studierenden weiblich sind.
+Wir können dies mit allen numerisch codierten Variablen machen.
+Merksatz: als n werden immer einfache <strong>Häufigkeiten</strong> (frequencies)
+ausgegeben. Häufig ist es hilfreich, für die Ausgabe nur noch die
+Spalten zu wählen, die auch sinnvoll angezeigt werden können.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="datenanalyse-mit-dplyr.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ziel: wir wollen den prozentualen Anteil der jeweiligen Vertiefungen prozentual sehen und dafür auch die entsprechenden Werte umcodieren, damit diese leichter lesbar sind.</span></span>
+<span id="cb118-2"><a href="datenanalyse-mit-dplyr.html#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="datenanalyse-mit-dplyr.html#cb118-3" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> </span>
+<span id="cb118-4"><a href="datenanalyse-mit-dplyr.html#cb118-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(crpr) <span class="sc">%&gt;%</span> </span>
+<span id="cb118-5"><a href="datenanalyse-mit-dplyr.html#cb118-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># gruppiert die Werte nach Variable Vertiefung</span></span>
+<span id="cb118-6"><a href="datenanalyse-mit-dplyr.html#cb118-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb118-7"><a href="datenanalyse-mit-dplyr.html#cb118-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># zählt die entsprechenden Fälle als n</span></span>
+<span id="cb118-8"><a href="datenanalyse-mit-dplyr.html#cb118-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb118-9"><a href="datenanalyse-mit-dplyr.html#cb118-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># löst die Gruppe auf</span></span>
+<span id="cb118-10"><a href="datenanalyse-mit-dplyr.html#cb118-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Anteil =</span> n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb118-11"><a href="datenanalyse-mit-dplyr.html#cb118-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># legt die Variable Anteil an</span></span>
+<span id="cb118-12"><a href="datenanalyse-mit-dplyr.html#cb118-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb118-13"><a href="datenanalyse-mit-dplyr.html#cb118-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rundet auf 2 Kommastellen</span></span>
+<span id="cb118-14"><a href="datenanalyse-mit-dplyr.html#cb118-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Vertiefung =</span> <span class="fu">recode</span>(crpr, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Crossmedia-Redaktion&quot;</span>, <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;Public Relations&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb118-15"><a href="datenanalyse-mit-dplyr.html#cb118-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># recodiert die Werte der alten Variable crpr in eine neue Kategorie &quot;Vertiefung&quot; und benennt die entsprechenden Werte 1 und 2 entsprechend um.</span></span>
+<span id="cb118-16"><a href="datenanalyse-mit-dplyr.html#cb118-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Vertiefung, Anteil) </span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   Vertiefung           Anteil
+##   &lt;chr&gt;                 &lt;dbl&gt;
+## 1 Crossmedia-Redaktion   60.5
+## 2 Public Relations       39.5</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="datenanalyse-mit-dplyr.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zeigt uns nur die beiden verlangten Werte</span></span></code></pre></div>
+<p>Im Beispiel oben sieht man, wie schnell sich eine Aussage über die
+Verteilung der Vertiefung treffen lässt.</p>
+<div id="komplexere-beziehungen-berechnen" class="section level4" number="5.1.4.1">
+<h4><span class="header-section-number">5.1.4.1</span> Komplexere Beziehungen berechnen</h4>
+<p>Beispielweise interessiert uns der BMI,
+<a href="https://de.wikipedia.org/wiki/Body-Mass-Index#Berechnung">Body-Mass-Index</a>.
+Hier wird die Körpergröße ins Verhältnis zur Größe gesetzt, die Formel
+wird als Gewicht / Körpergröße in Metern im Quadrat definiert. Ein BMI
+von 19-24 (Frauen) und 20-25 (Männer) gilt als passender Wert.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="datenanalyse-mit-dplyr.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnung des Bodymass-Indexes </span></span>
+<span id="cb121-2"><a href="datenanalyse-mit-dplyr.html#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="datenanalyse-mit-dplyr.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wir müssen zunächst die Körpergröße in Meter umrechnen, da sich sonst die Werte verfälschen, denn im Original-Datensatz sind die Werte in cm angegeben.</span></span>
+<span id="cb121-4"><a href="datenanalyse-mit-dplyr.html#cb121-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-5"><a href="datenanalyse-mit-dplyr.html#cb121-5" aria-hidden="true" tabindex="-1"></a>bmi <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span> <span class="co"># </span></span>
+<span id="cb121-6"><a href="datenanalyse-mit-dplyr.html#cb121-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">height =</span> height<span class="sc">/</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb121-7"><a href="datenanalyse-mit-dplyr.html#cb121-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># teile die Angabe in cm durch 100, um die Angabe in Meter zu erhalten.</span></span>
+<span id="cb121-8"><a href="datenanalyse-mit-dplyr.html#cb121-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bmi =</span> weight<span class="sc">/</span>(height<span class="sc">*</span>height)) <span class="sc">%&gt;%</span>  </span>
+<span id="cb121-9"><a href="datenanalyse-mit-dplyr.html#cb121-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># lege eine neue Variable bmi an</span></span>
+<span id="cb121-10"><a href="datenanalyse-mit-dplyr.html#cb121-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name_first, sex, height, bmi) <span class="sc">%&gt;%</span> </span>
+<span id="cb121-11"><a href="datenanalyse-mit-dplyr.html#cb121-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># nimm nur die ersten drei Spalten</span></span>
+<span id="cb121-12"><a href="datenanalyse-mit-dplyr.html#cb121-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), round, <span class="dv">2</span>))</span>
+<span id="cb121-13"><a href="datenanalyse-mit-dplyr.html#cb121-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rundet alle numerischen Werte auf zwei Dezimalen</span></span>
+<span id="cb121-14"><a href="datenanalyse-mit-dplyr.html#cb121-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-15"><a href="datenanalyse-mit-dplyr.html#cb121-15" aria-hidden="true" tabindex="-1"></a>bmi</span></code></pre></div>
+<pre><code>## # A tibble: 38 x 4
+##    name_first   sex height   bmi
+##    &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 Charlotte      1   1.67  20.4
+##  2 Jana           1   1.65  20.2
+##  3 Lena           1   1.75  21.2
+##  4 Serena         1   1.72  19.9
+##  5 Anna           1   1.63  19.6
+##  6 Ruth           1   1.77  20.1
+##  7 Maria          1   1.72  21.6
+##  8 Eva            1   1.69  20.7
+##  9 Karl           2   1.84  24.2
+## 10 Ahmed          2   1.74  23.1
+## # ... with 28 more rows</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="datenanalyse-mit-dplyr.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wie verteilt sich die Smartphone-Nutzung auf Männer und Frauen?</span></span>
+<span id="cb123-2"><a href="datenanalyse-mit-dplyr.html#cb123-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-3"><a href="datenanalyse-mit-dplyr.html#cb123-3" aria-hidden="true" tabindex="-1"></a>s <span class="sc">%&gt;%</span> </span>
+<span id="cb123-4"><a href="datenanalyse-mit-dplyr.html#cb123-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-5"><a href="datenanalyse-mit-dplyr.html#cb123-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(phone) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-6"><a href="datenanalyse-mit-dplyr.html#cb123-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Prozent =</span> n<span class="sc">/</span><span class="dv">38</span><span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb123-7"><a href="datenanalyse-mit-dplyr.html#cb123-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Geschlecht =</span> <span class="fu">recode</span>(sex, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;weiblich&quot;</span>, <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;mönnlich&quot;</span>, <span class="st">&quot;3&quot;</span> <span class="ot">=</span> <span class="st">&quot;divers&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-8"><a href="datenanalyse-mit-dplyr.html#cb123-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb123-9"><a href="datenanalyse-mit-dplyr.html#cb123-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Smartphone =</span> <span class="fu">recode</span>(phone, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;ios&quot;</span>, <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;android&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-10"><a href="datenanalyse-mit-dplyr.html#cb123-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Geschlecht, Smartphone, Prozent) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-11"><a href="datenanalyse-mit-dplyr.html#cb123-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), round, <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   Geschlecht Smartphone Prozent
+##   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;
+## 1 weiblich   ios          44.7 
+## 2 weiblich   android      31.6 
+## 3 mönnlich   ios           5.26
+## 4 mönnlich   android      10.5 
+## 5 divers     android       7.89</code></pre>
+</div>
+</div>
+<div id="spalten-umbennen" class="section level3" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Spalten umbennen</h3>
+<p>Manchmal ist es sinnvoll, Werte umzubennen, um diese für Publikationen
+besser lesbar zu machen. Dazu gibt es zwei Kategorien, nämlich
+Spaltenbezeichnungen und einzelne codierte Werte. Spalten lassen sich
+durch rename() verändern, dabei muss der neue Spaltenname zuerst genannt
+werden.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="datenanalyse-mit-dplyr.html#cb125-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification ---------------------------------------------------------------------------------------------------------------------
+## cols(
+##   id = col_double(),
+##   name = col_double(),
+##   name_first = col_character(),
+##   sex = col_double(),
+##   crpr = col_double(),
+##   height = col_double(),
+##   weight = col_double(),
+##   age = col_double(),
+##   age_real = col_double(),
+##   smoke = col_double(),
+##   phone = col_double(),
+##   tatoo = col_double(),
+##   eyes = col_double(),
+##   hair = col_double(),
+##   location = col_character(),
+##   county = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="datenanalyse-mit-dplyr.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wie verteilt sich die Smartphone-Nutzung auf Männer und Frauen?</span></span>
+<span id="cb127-2"><a href="datenanalyse-mit-dplyr.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-3"><a href="datenanalyse-mit-dplyr.html#cb127-3" aria-hidden="true" tabindex="-1"></a>smart <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span> </span>
+<span id="cb127-4"><a href="datenanalyse-mit-dplyr.html#cb127-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> <span class="co"># gruppiert nach Geschlecht</span></span>
+<span id="cb127-5"><a href="datenanalyse-mit-dplyr.html#cb127-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(phone) <span class="sc">%&gt;%</span> <span class="co"># zählt die gleichen Nennungen für sex und phone</span></span>
+<span id="cb127-6"><a href="datenanalyse-mit-dplyr.html#cb127-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">n =</span> n<span class="sc">/</span><span class="dv">38</span><span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="co"># berechnet den prozentualen Anteil</span></span>
+<span id="cb127-7"><a href="datenanalyse-mit-dplyr.html#cb127-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># rundet die Werte auf eine Nachkommastelle</span></span>
+<span id="cb127-8"><a href="datenanalyse-mit-dplyr.html#cb127-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb127-9"><a href="datenanalyse-mit-dplyr.html#cb127-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-10"><a href="datenanalyse-mit-dplyr.html#cb127-10" aria-hidden="true" tabindex="-1"></a>smart</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##     sex phone     n
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     1  44.7
+## 2     1     2  31.6
+## 3     2     1   5.3
+## 4     2     2  10.5
+## 5     3     2   7.9</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="datenanalyse-mit-dplyr.html#cb129-1" aria-hidden="true" tabindex="-1"></a>smart <span class="ot">&lt;-</span> smart <span class="sc">%&gt;%</span> <span class="co"># zunächst nennen wir die Spalten um</span></span>
+<span id="cb129-2"><a href="datenanalyse-mit-dplyr.html#cb129-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Geschlecht =</span> sex, </span>
+<span id="cb129-3"><a href="datenanalyse-mit-dplyr.html#cb129-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Smartphone =</span> phone,</span>
+<span id="cb129-4"><a href="datenanalyse-mit-dplyr.html#cb129-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Prozent =</span> n) <span class="co"># %&gt;% </span></span>
+<span id="cb129-5"><a href="datenanalyse-mit-dplyr.html#cb129-5" aria-hidden="true" tabindex="-1"></a>smart</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   Geschlecht Smartphone Prozent
+##        &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
+## 1          1          1    44.7
+## 2          1          2    31.6
+## 3          2          1     5.3
+## 4          2          2    10.5
+## 5          3          2     7.9</code></pre>
+</div>
+<div id="werte-recodieren-bzw.-umbennen" class="section level3" number="5.1.6">
+<h3><span class="header-section-number">5.1.6</span> Werte recodieren bzw. umbennen</h3>
+<p>Wir wollen den Datensatz smart nun <strong>besser lesbar</strong> machen. Dazu wollen
+wir die einzelnen Zeilenwerte umbenennen. Dazu ist es hilfreich, das
+Codebuch zu verwenden! Das Codebuch sagt uns: Geschlecht 1 = weiblich, 2
+= männlich, 3 = divers und Smartphone 1 = Android, 2 = iOS. Wenn wir die
+einzelnen Daten umkodieren, müssen wir ein neues Objekt anlegen. Dazu
+verwenden wir die Funktion mutate() in Verbindung mit recode().</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="datenanalyse-mit-dplyr.html#cb131-1" aria-hidden="true" tabindex="-1"></a>smart <span class="co"># die bereits berechneten Werte verwenden wir weiter.</span></span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   Geschlecht Smartphone Prozent
+##        &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
+## 1          1          1    44.7
+## 2          1          2    31.6
+## 3          2          1     5.3
+## 4          2          2    10.5
+## 5          3          2     7.9</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="datenanalyse-mit-dplyr.html#cb133-1" aria-hidden="true" tabindex="-1"></a>smart_table <span class="ot">&lt;-</span> smart <span class="sc">%&gt;%</span> </span>
+<span id="cb133-2"><a href="datenanalyse-mit-dplyr.html#cb133-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Geschlecht=</span>recode</span>
+<span id="cb133-3"><a href="datenanalyse-mit-dplyr.html#cb133-3" aria-hidden="true" tabindex="-1"></a>                 (Geschlecht, </span>
+<span id="cb133-4"><a href="datenanalyse-mit-dplyr.html#cb133-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;female&quot;</span>,</span>
+<span id="cb133-5"><a href="datenanalyse-mit-dplyr.html#cb133-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;male&quot;</span>,</span>
+<span id="cb133-6"><a href="datenanalyse-mit-dplyr.html#cb133-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;3&quot;</span> <span class="ot">=</span> <span class="st">&quot;diverse&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb133-7"><a href="datenanalyse-mit-dplyr.html#cb133-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Smartphone=</span>recode</span>
+<span id="cb133-8"><a href="datenanalyse-mit-dplyr.html#cb133-8" aria-hidden="true" tabindex="-1"></a>                 (Smartphone, </span>
+<span id="cb133-9"><a href="datenanalyse-mit-dplyr.html#cb133-9" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Android&quot;</span>,</span>
+<span id="cb133-10"><a href="datenanalyse-mit-dplyr.html#cb133-10" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;iOS&quot;</span>))</span>
+<span id="cb133-11"><a href="datenanalyse-mit-dplyr.html#cb133-11" aria-hidden="true" tabindex="-1"></a>smart_table</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   Geschlecht Smartphone Prozent
+##   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;
+## 1 female     Android       44.7
+## 2 female     iOS           31.6
+## 3 male       Android        5.3
+## 4 male       iOS           10.5
+## 5 diverse    iOS            7.9</code></pre>
+</div>
+<div id="exkurs-tabellen-einfach-erstellen" class="section level3" number="5.1.7">
+<h3><span class="header-section-number">5.1.7</span> Exkurs: Tabellen einfach erstellen</h3>
+<p>Wir haben jetzt die Werte umkodiert: damit lassen sich die Tabellenwerte
+viel einfacher lesen. Tabellen lassen sich in Markdown noch schöner
+darstellen, dazu benötigen wir die Programmbibliothek kableExtra().
+kable() ist in knitr integriert und verwendet vorgefertigte Themes, die
+sich aber anpassen lassen. KableExtra müssten Sie ggf. noch
+installieren.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="datenanalyse-mit-dplyr.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
+<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="datenanalyse-mit-dplyr.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># minimal style</span></span>
+<span id="cb139-2"><a href="datenanalyse-mit-dplyr.html#cb139-2" aria-hidden="true" tabindex="-1"></a>smart_table <span class="sc">%&gt;%</span> <span class="co"># nimm den Datensatz </span></span>
+<span id="cb139-3"><a href="datenanalyse-mit-dplyr.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> <span class="co"># mach eine schöne Tabelle</span></span>
+<span id="cb139-4"><a href="datenanalyse-mit-dplyr.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_minimal</span>() <span class="co"># mit dem minimal theme</span></span></code></pre></div>
+<table class=" lightable-minimal" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Geschlecht
+</th>
+<th style="text-align:left;">
+Smartphone
+</th>
+<th style="text-align:right;">
+Prozent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Android
+</td>
+<td style="text-align:right;">
+44.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+31.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Android
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+10.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+diverse
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+7.9
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="datenanalyse-mit-dplyr.html#cb140-1" aria-hidden="true" tabindex="-1"></a>T_Sex_Phone <span class="ot">&lt;-</span> smart_table <span class="sc">%&gt;%</span> <span class="co"># erstelle ein neues Objekt </span></span>
+<span id="cb140-2"><a href="datenanalyse-mit-dplyr.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">&quot;Geschlechtsverteilung und Smartphone-Nutzung&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># füge eine Tabellenüberschrift hinzu</span></span>
+<span id="cb140-3"><a href="datenanalyse-mit-dplyr.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> T, <span class="at">html_font =</span> <span class="st">&quot;Cambria&quot;</span>) <span class="co"># nutze die gesamte Breite und verwende die Schriftart Cambria.</span></span>
+<span id="cb140-4"><a href="datenanalyse-mit-dplyr.html#cb140-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-5"><a href="datenanalyse-mit-dplyr.html#cb140-5" aria-hidden="true" tabindex="-1"></a>T_Sex_Phone <span class="co"># das ist das formatierte Objekt! </span></span></code></pre></div>
+<table class=" lightable-classic" style="font-family: Cambria; margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:Great tables with kable)Geschlechtsverteilung und Smartphone-Nutzung
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Geschlecht
+</th>
+<th style="text-align:left;">
+Smartphone
+</th>
+<th style="text-align:right;">
+Prozent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Android
+</td>
+<td style="text-align:right;">
+44.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+31.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Android
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+10.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+diverse
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+7.9
+</td>
+</tr>
+</tbody>
+</table>
+Die oben erstellte Tabelle lässt sich auch direkt in Markdown-Dokumente
+einbetten:
+<table class=" lightable-classic" style="font-family: Cambria; margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:Great tables with kable)Geschlechtsverteilung und Smartphone-Nutzung
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Geschlecht
+</th>
+<th style="text-align:left;">
+Smartphone
+</th>
+<th style="text-align:right;">
+Prozent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+Android
+</td>
+<td style="text-align:right;">
+44.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+31.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+Android
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+10.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+diverse
+</td>
+<td style="text-align:left;">
+iOS
+</td>
+<td style="text-align:right;">
+7.9
+</td>
+</tr>
+</tbody>
+</table>
+<p>Vielleicht merken Sie jetzt bereits, wie viel
+einfacher Publikation einer Forschungsarbeit werden kann, wenn Sie es
+mit komplexeren Analysen und Daten zu tun haben. Sie müssen sich nicht
+mehr um die umständliche Erstellung von Tabellen in Word beschäftigen,
+sondern können sich direkt auf die Daten fokussieren und diese dann
+direkt in das Dokument einbetten.</p>
+</div>
+<div id="kür-verschiedene-bedingungen-kombinieren" class="section level3" number="5.1.8">
+<h3><span class="header-section-number">5.1.8</span> Kür: verschiedene Bedingungen kombinieren</h3>
+<p>Wer etwas sicherer im Umgang mit R ist, kann auch beginnen, verschiedene
+Parameter zu verbinden. Dazu verwenden wir z.B. logische Operatoren. Wir
+möchten z.B. nur weibliche CR-Vertieferinnen, die ein android smartphone
+verwenden und größer sind als 175cm.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="datenanalyse-mit-dplyr.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
+<span id="cb141-2"><a href="datenanalyse-mit-dplyr.html#cb141-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification ---------------------------------------------------------------------------------------------------------------------
+## cols(
+##   id = col_double(),
+##   name = col_double(),
+##   name_first = col_character(),
+##   sex = col_double(),
+##   crpr = col_double(),
+##   height = col_double(),
+##   weight = col_double(),
+##   age = col_double(),
+##   age_real = col_double(),
+##   smoke = col_double(),
+##   phone = col_double(),
+##   tatoo = col_double(),
+##   eyes = col_double(),
+##   hair = col_double(),
+##   location = col_character(),
+##   county = col_character()
+## )</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="datenanalyse-mit-dplyr.html#cb143-1" aria-hidden="true" tabindex="-1"></a>androids175 <span class="ot">&lt;-</span> s <span class="sc">%&gt;%</span></span>
+<span id="cb143-2"><a href="datenanalyse-mit-dplyr.html#cb143-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">!=</span> <span class="st">&quot;2&quot;</span> <span class="sc">&amp;</span> phone <span class="sc">==</span> <span class="st">&quot;1&quot;</span> <span class="sc">&amp;</span> height<span class="sc">&gt;=</span><span class="st">&quot;175&quot;</span> <span class="sc">&amp;</span> crpr <span class="sc">==</span> <span class="st">&quot;1&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb143-3"><a href="datenanalyse-mit-dplyr.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name_first, sex, crpr, phone, height)</span>
+<span id="cb143-4"><a href="datenanalyse-mit-dplyr.html#cb143-4" aria-hidden="true" tabindex="-1"></a>androids175</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   name_first   sex  crpr phone height
+##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Lena           1     1     1    175</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="datenanalyse-mit-dplyr.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wer möchte, kann das noch etwas schöner machen</span></span>
+<span id="cb145-2"><a href="datenanalyse-mit-dplyr.html#cb145-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-3"><a href="datenanalyse-mit-dplyr.html#cb145-3" aria-hidden="true" tabindex="-1"></a>a175 <span class="ot">&lt;-</span> androids175 <span class="sc">%&gt;%</span></span>
+<span id="cb145-4"><a href="datenanalyse-mit-dplyr.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Name =</span> <span class="st">&quot;name_first&quot;</span>,</span>
+<span id="cb145-5"><a href="datenanalyse-mit-dplyr.html#cb145-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Geschlecht =</span> <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb145-6"><a href="datenanalyse-mit-dplyr.html#cb145-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Smartphone =</span> <span class="st">&quot;phone&quot;</span>,</span>
+<span id="cb145-7"><a href="datenanalyse-mit-dplyr.html#cb145-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Vertiefung =</span> <span class="st">&quot;crpr&quot;</span>,</span>
+<span id="cb145-8"><a href="datenanalyse-mit-dplyr.html#cb145-8" aria-hidden="true" tabindex="-1"></a>         Größe <span class="ot">=</span> <span class="st">&quot;height&quot;</span>)</span>
+<span id="cb145-9"><a href="datenanalyse-mit-dplyr.html#cb145-9" aria-hidden="true" tabindex="-1"></a>a175</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   Name  Geschlecht Vertiefung Smartphone Größe
+##   &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 Lena           1          1          1   175</code></pre>
+</div>
+<div id="zusammenfassung-daten-manipulieren" class="section level3" number="5.1.9">
+<h3><span class="header-section-number">5.1.9</span> Zusammenfassung Daten manipulieren</h3>
+<p>Mit dem dyplr-Paket lassen sich Datensätze leicht verändern, wenn diese
+in einem tidydata-Format (tibble) vorliegen. Dazu sind alle
+Beobachtungen in einer Zeile, alle Variablen in den Spalten angelegt.</p>
+<p>Die wichtigsten Funktionen dafür sind:</p>
+<ul>
+<li><p>filter(): nach Zeilenwerte selektieren</p></li>
+<li><p>select(): einzelne Spalten selektieren</p></li>
+<li><p>group_by(): Teilgruppen nach bestimmten Variablen erstellen</p></li>
+<li><p>count(): Einzelne Fälle zählen</p></li>
+<li><p>summarize(): Fälle zusammenfassen</p></li>
+<li><p>rename(): Spalten umbenennen</p></li>
+<li><p>recode(): Werte umkodieren</p></li>
+</ul>
+</div>
+</div>
+<div id="tidydata-tutor" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Tidydata Tutor</h2>
+<p>Eine ganz tolle Möglichkeit, sich die Funktionen vom tidyverse zu
+verdeutlichen bietet der
+<a href="https://tidydatatutor.com/index.html">TidydataTutor</a>. Hier lassen sich
+die einzelnen Schritte für die Datenmanipulation Schritt für Schritt
+nachvollziehen und so der eigene Umgang mit Code verbessern. Beispiel
+<a href="https://tidydatatutor.com/vis.html#code=library%28tidyverse%29%0A%0Astarwars%20%25%3E%25%20%0A%20%20select%28name,%20height,%20mass,%20species,%20gender%29%20%25%3E%25%20%0A%20%20drop_na%28height,%20mass,%20gender%29%20%25%3E%25%20%20%0A%20%20filter%28mass%20%3C%201000%29%20%25%3E%25%20%0A%20%20arrange%28desc%28height%29%29%20%20%25%3E%25%0A%20%20group_by%28gender%29%20%25%3E%25%0A%20%20summarize%28mean%28height%29%29%0A%20%20&amp;d=2021-12-08&amp;lang=r&amp;v=v1">Starwars</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="daten-importieren.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/juliakouassi/test_data/edit/master/05-dyplr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/juliakouassi/test_data/blob/master/05-dyplr.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

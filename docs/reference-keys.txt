@@ -23,3 +23,17 @@ tibbles-1
 daten-importieren
 datenimport
 übersicht-über-daten
+datenanalyse-mit-dplyr
+daten-selektieren
+zeilen-manipulierenfiltern
+neuen-datensatz-erstellen
+spalten-manipulieren
+werte-gruppieren
+mittelwerte-berechnen-und-speichern
+komplexere-beziehungen-berechnen
+spalten-umbennen
+werte-recodieren-bzw.-umbennen
+exkurs-tabellen-einfach-erstellen
+kür-verschiedene-bedingungen-kombinieren
+zusammenfassung-daten-manipulieren
+tidydata-tutor

@@ -1,0 +1,428 @@
+# Datenanalyse mit dplyr
+
+## Daten selektieren
+
+Eine Kernfunktion in der Datenanalyse ist es, Daten nach bestimmten
+Werten zu selektieren. Es ist wichtig sich zuvor zu überlegen, nach
+welchen Werte selektiert werden soll. Prinzipiell kann nach Zeilen oder
+Spalten selektiert werden, [Cheatsheet
+dplyr](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf).
+
+### Zeilen manipulieren/filtern
+
+Generell: wir erstellen keinen neuen Datensatz, sondern manipulieren den
+bestehenden Datensatz students. Dazu verwenden wir den Befehl filter().
+Damit wird kein neuer Datensatz erstellt, sondern der bestehende
+Datensatz verändert.
+
+```{r Zeilen auswählen}
+
+# nach Zeilenattribut selektieren, z.B.
+# tätowierte Frauen aus Stuttgart
+s %>% filter(sex == 1, tatoo == 2, location == "Stuttgart")
+
+# Werte sortieren
+# nach genauem Alter
+s %>% arrange(age_real)
+
+# absteigend sortieren nach Größe (größter Wert zuerst)
+s %>% arrange(desc(height))
+
+# Teile des Datensatzes auswählen
+# selektiere die drei Fälle mit dem höchsten Gewicht
+s %>% slice_max(weight, n=3)
+
+# zeige die fünf leichtesten Personen
+s %>% slice_min(weight, n=5)
+
+# Achtung: hier werden 8 Datensätze ausgegeben, weil fünf Personen jeweils 52 kg wiegen. 
+```
+
+Wir sind den Code jetzt Zeile für Zeile durchgegangen. Eleganter ist es,
+wenn dies alles in einem Codechunk passiert. Dazu lassen sich logische
+Operatoren verbinden. Im Beispiel von filter geht sowohl die
+Aneinanderreihung der Angaben als auch die Verbindung mit dem logischen
+Operator "&". Für die bessere Lesbarkeit des Codes macht & in diesem
+Fall mehr Sinn.
+
+```{r Codebeispiel Filter}
+
+# Ziel: Wir möchten tätowierte Frauen aus Stuttgart absteigend sortiert nach Größe 
+
+s %>% 
+	filter(sex == 1 & tatoo == 2 & location == "Stuttgart") %>% 
+	arrange(desc(height))
+
+# Ergebnis: Von den vier Frauen ist Maria mit 1,72 cm am größten und Merle mit 1,62 cm am kleinsten. 
+```
+
+#### Neuen Datensatz erstellen
+
+Um einen **neuen Datensatz** zu erstellen verwenden wir die
+Zuweisungsfunktion. Das ist wichtig, nur so die Ergebnisse gespeichert
+werden.
+
+```{r neuen Datensatz erstellen}
+
+# neuen Datensatz der tätowierten Frauen aus Stuttgart erstellen, der nach Alter sortiert ist
+
+s_fem_tat_age <- s %>% 
+	filter(sex == 1, tatoo == 2, location == "Stuttgart") %>% 
+	arrange(age_real)
+
+# der neue Datensatz kann nun eigenständig weiter bearbeitet werden
+s_fem_tat_age
+
+```
+
+### Spalten manipulieren
+
+Während sich die **Zeilen** auf **einzelne Fälle** beziehen (also in
+unserem Beispiel Studierende aus dem Datensatz) definieren die
+**Spalten** die **Variablen** des Datensatzes.
+
+```{r Spalten selektieren}
+
+# Wir lesen das Objekt s erneut ein:
+
+s <- read_csv("https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv")
+
+# Einzelne Spalten selektieren
+vornamen <- s %>%
+	select(name_first)
+vornamen
+```
+
+```{r Mehrere Spalten selektieren}
+# Mehrere Spalten selektieren
+crpr_sex <- s %>%
+	select(name_first, sex, crpr)
+crpr_sex
+```
+
+Häufig ist es wichtig, Variablen umzubenennen, um eine bessere
+Lesbarkeit der Daten zu erreichen. Dazu verwenden wir den Befehl
+rename(). Achtung: der neue Wert wird zuerst genannt, dann der Wert, der
+umgeschrieben werden soll.
+
+```{r Variablen umbennen}
+
+# Variablen umbenennen. Achtung: der neue Wert muss zuerst in der Funktion genannt werden.
+s2 <- s %>% 
+  rename(geschlecht = sex) %>%
+  select(name, geschlecht)
+s2 # wir haben zwei Spalten mit name und geschlecht selektiert
+```
+
+### Werte gruppieren
+
+Häufig ist es notwendig, Werte nach bestimmten Gruppen zusammenzufassen.
+Dies ermöglicht einen besseren Vergleich der Daten. Dazu verwenden wir
+die Funktion group_by(). Hier können ein oder mehrere Bedingungen
+angegeben werden. Achtung: wenn eine Gruppe angelegt wird, bleibt diese
+bestehen. Deshalb sollten Gruppen immer wieder mit ungroup() augelöst
+werden, wenn sie nicht mehr benötigt werden.
+
+```{r Werte gruppieren}
+
+# Einfache Zählungen nach einer Variable in neuem Datensatz
+
+crpr <- s %>% 
+	group_by(crpr) %>% # gruppiert die Werte nach Variable Vertiefung
+	count() %>% # zählt die entsprechenden Fälle
+	ungroup()
+crpr
+
+# Einfaches Auszählen von Variablen 
+
+s %>% 
+	group_by(age) %>% # gruppiert die Werte nach Variable
+	count() # zählt die entsprechenden Fälle
+
+s %>% 
+	group_by(age_real) %>% # gruppiert die Werte nach Variable
+	count() # zählt die entsprechenden Fälle
+
+
+```
+
+Natürlich lassen sich auch zwei Variablen gruppieren und zählen.
+
+```{r Zwei Variablen gruppieren}
+
+# Zwei Variablen gruppieren
+
+s %>% 
+	group_by (crpr, tatoo) %>% # gruppiert die Werte nach Variable
+	count() # zählt die entsprechenden Fälle
+```
+
+### Mittelwerte berechnen und speichern
+
+Häufig interessieren uns nicht die Einzelwerte, wie oben, sondern
+aggregierte Mittelwerte. Ein Mittelwert (mean) teilt die Summe aller
+Werte durch ihre Anzahl und liefert so einen besseren Vergleich. Es ist
+einer der einfachsten Werte der deskriptiven Statistk, den wir berechnen
+können. In diesem Beispiel wollen wir die Mittelwerte berechnen und
+verwenden dazu die summarize() Funktion.
+
+```{r Mittelwerte berechnen}
+
+# direkter Aufruf des Mittelwert des Alters aus dem Datensatz s
+mean(s$age_real) 
+# damit wird der Mittelwert aller Werte einer Variable berechnet.
+
+# Durchschnittsgröße nach Geschlecht
+s %>% 
+	group_by(sex) %>% # gruppiert nach Geschlecht
+	summarize(mean(height)) %>% # berechnet die Durchschnittsgröße
+	round(digits = 1) %>% # verwendet nur eine Dezimalstelle
+	ungroup()
+
+```
+
+**Mutate: neue Variablen anlegen und berechnen**
+
+Mit mutate() lassen sich neue Variablen anlegen bzw. bestehende Werte
+umrechnen. Das ist wichtig, um Werte ins Verhältnis zu setzen.
+Verhältniswerte nennen wir auch Prozent, d.h. Prozentwerte messen den
+Anteil eines Wertes von 100. Prozentwerte geben immer Verhältnisse an
+und sind so besser zu verstehen. Dazu wird der gesuchte Wert mit der
+Gesamtzahl geteilt und mit 100 multipliziert. Zudem lassen sich mit
+mutate() die Variablen und Beobachtungen umcodieren.
+
+```{r Beispiel einfache Prozentrechnung}
+
+s %>% 
+	count(sex) %>% 
+	# count erstellt eine neue Spalte mit "n" für die Häufigkeiten
+	mutate(percent = n/sum(n) * 100) %>% 
+	# mutate erstellt eine neue Spalte "percent" und berechnet dort die Häufigkeiten von n, geteilt durch die Summe von n multipliziert mal 100. 
+	round(digits = 2)
+	# rundet die Werte auf 2 Dezimalstellen
+
+```
+
+Wir sehen jetzt, dass rund drei Viertel der Studierenden weiblich sind.
+Wir können dies mit allen numerisch codierten Variablen machen.
+Merksatz: als n werden immer einfache **Häufigkeiten** (frequencies)
+ausgegeben. Häufig ist es hilfreich, für die Ausgabe nur noch die
+Spalten zu wählen, die auch sinnvoll angezeigt werden können.
+
+```{r Mutate: Prozentanteil Vertiefung}
+
+# Ziel: wir wollen den prozentualen Anteil der jeweiligen Vertiefungen prozentual sehen und dafür auch die entsprechenden Werte umcodieren, damit diese leichter lesbar sind.
+
+s %>% 
+	group_by(crpr) %>% 
+	# gruppiert die Werte nach Variable Vertiefung
+	count() %>% 
+	# zählt die entsprechenden Fälle als n
+	ungroup() %>% 
+	# löst die Gruppe auf
+	mutate(Anteil = n/sum(n)*100) %>% 
+	# legt die Variable Anteil an
+	round(digits = 2) %>% 
+	# rundet auf 2 Kommastellen
+	mutate(Vertiefung = recode(crpr, "1" = "Crossmedia-Redaktion", "2" = "Public Relations")) %>% 
+	# recodiert die Werte der alten Variable crpr in eine neue Kategorie "Vertiefung" und benennt die entsprechenden Werte 1 und 2 entsprechend um.
+	select(Vertiefung, Anteil) 
+# zeigt uns nur die beiden verlangten Werte
+
+```
+
+Im Beispiel oben sieht man, wie schnell sich eine Aussage über die
+Verteilung der Vertiefung treffen lässt.
+
+#### Komplexere Beziehungen berechnen
+
+Beispielweise interessiert uns der BMI,
+[Body-Mass-Index](https://de.wikipedia.org/wiki/Body-Mass-Index#Berechnung).
+Hier wird die Körpergröße ins Verhältnis zur Größe gesetzt, die Formel
+wird als Gewicht / Körpergröße in Metern im Quadrat definiert. Ein BMI
+von 19-24 (Frauen) und 20-25 (Männer) gilt als passender Wert.
+
+```{r Mutate - neue Variablen anlegen, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+
+# Berechnung des Bodymass-Indexes 
+
+# Wir müssen zunächst die Körpergröße in Meter umrechnen, da sich sonst die Werte verfälschen, denn im Original-Datensatz sind die Werte in cm angegeben.
+
+bmi <- s %>% # 
+  mutate(height = height/100) %>% 
+	# teile die Angabe in cm durch 100, um die Angabe in Meter zu erhalten.
+	mutate(bmi = weight/(height*height)) %>%  
+	# lege eine neue Variable bmi an
+  select(name_first, sex, height, bmi) %>% 
+	# nimm nur die ersten drei Spalten
+	mutate(across(where(is.numeric), round, 2))
+	# rundet alle numerischen Werte auf zwei Dezimalen
+
+bmi
+```
+
+```{r Mutate, bestehende Werte recodieren, Beispiel Prozentwerte}
+
+# Wie verteilt sich die Smartphone-Nutzung auf Männer und Frauen?
+
+s %>% 
+	group_by(sex) %>% 
+	count(phone) %>% 
+	mutate(Prozent = n/38*100) %>%  
+	mutate(Geschlecht = recode(sex, "1" = "weiblich", "2" = "mönnlich", "3" = "divers")) %>% 
+	ungroup() %>% 
+	mutate(Smartphone = recode(phone, "1" = "ios", "2" = "android")) %>% 
+	select(Geschlecht, Smartphone, Prozent) %>% 
+	mutate(across(where(is.numeric), round, 2))
+
+
+```
+
+### Spalten umbennen
+
+Manchmal ist es sinnvoll, Werte umzubennen, um diese für Publikationen
+besser lesbar zu machen. Dazu gibt es zwei Kategorien, nämlich
+Spaltenbezeichnungen und einzelne codierte Werte. Spalten lassen sich
+durch rename() verändern, dabei muss der neue Spaltenname zuerst genannt
+werden.
+
+```{r Spalten umbennen}
+
+s <- read_csv("https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv")
+
+# Wie verteilt sich die Smartphone-Nutzung auf Männer und Frauen?
+
+smart <- s %>% 
+	group_by(sex) %>% # gruppiert nach Geschlecht
+	count(phone) %>% # zählt die gleichen Nennungen für sex und phone
+	mutate(n = n/38*100) %>% # berechnet den prozentualen Anteil
+	round(digits = 1) %>% # rundet die Werte auf eine Nachkommastelle
+  ungroup()
+
+smart
+
+smart <- smart %>% # zunächst nennen wir die Spalten um
+	rename(Geschlecht = sex, 
+				 Smartphone = phone,
+				 Prozent = n) # %>% 
+smart
+```
+
+### Werte recodieren bzw. umbennen
+
+Wir wollen den Datensatz smart nun **besser lesbar** machen. Dazu wollen
+wir die einzelnen Zeilenwerte umbenennen. Dazu ist es hilfreich, das
+Codebuch zu verwenden! Das Codebuch sagt uns: Geschlecht 1 = weiblich, 2
+= männlich, 3 = divers und Smartphone 1 = Android, 2 = iOS. Wenn wir die
+einzelnen Daten umkodieren, müssen wir ein neues Objekt anlegen. Dazu
+verwenden wir die Funktion mutate() in Verbindung mit recode().
+
+```{r Werte recodieren}
+
+smart # die bereits berechneten Werte verwenden wir weiter.
+
+smart_table <- smart %>% 
+  mutate(Geschlecht=recode
+                 (Geschlecht, 
+                   "1" = "female",
+                   "2" = "male",
+                   "3" = "diverse")) %>% 
+  mutate(Smartphone=recode
+                 (Smartphone, 
+                   "1" = "Android",
+                   "2" = "iOS"))
+smart_table
+```
+
+### Exkurs: Tabellen einfach erstellen
+
+Wir haben jetzt die Werte umkodiert: damit lassen sich die Tabellenwerte
+viel einfacher lesen. Tabellen lassen sich in Markdown noch schöner
+darstellen, dazu benötigen wir die Programmbibliothek kableExtra().
+kable() ist in knitr integriert und verwendet vorgefertigte Themes, die
+sich aber anpassen lassen. KableExtra müssten Sie ggf. noch
+installieren.
+
+```{r Great tables with kable}
+library(kableExtra)
+
+# minimal style
+smart_table %>% # nimm den Datensatz 
+  kbl() %>% # mach eine schöne Tabelle
+  kable_minimal() # mit dem minimal theme
+
+T_Sex_Phone <- smart_table %>% # erstelle ein neues Objekt 
+  kbl(caption = "Geschlechtsverteilung und Smartphone-Nutzung") %>% # füge eine Tabellenüberschrift hinzu
+  kable_classic(full_width = T, html_font = "Cambria") # nutze die gesamte Breite und verwende die Schriftart Cambria.
+
+T_Sex_Phone # das ist das formatierte Objekt! 
+
+
+```
+
+Die oben erstellte Tabelle lässt sich auch direkt in Markdown-Dokumente
+einbetten: `r T_Sex_Phone` Vielleicht merken Sie jetzt bereits, wie viel
+einfacher Publikation einer Forschungsarbeit werden kann, wenn Sie es
+mit komplexeren Analysen und Daten zu tun haben. Sie müssen sich nicht
+mehr um die umständliche Erstellung von Tabellen in Word beschäftigen,
+sondern können sich direkt auf die Daten fokussieren und diese dann
+direkt in das Dokument einbetten.
+
+### Kür: verschiedene Bedingungen kombinieren
+
+Wer etwas sicherer im Umgang mit R ist, kann auch beginnen, verschiedene
+Parameter zu verbinden. Dazu verwenden wir z.B. logische Operatoren. Wir
+möchten z.B. nur weibliche CR-Vertieferinnen, die ein android smartphone
+verwenden und größer sind als 175cm.
+
+```{r Kombination von verschiedenen Bedingungen }
+
+# Datensatz einlesen
+s <- read_csv("https://raw.githubusercontent.com/hdm-crpr/226308b_Data_Literacy/main/data/students/students.csv")
+
+androids175 <- s %>%
+  filter(sex != "2" & phone == "1" & height>="175" & crpr == "1") %>%
+  select(name_first, sex, crpr, phone, height)
+androids175
+
+# Wer möchte, kann das noch etwas schöner machen
+
+a175 <- androids175 %>%
+  rename(Name = "name_first",
+         Geschlecht = "sex",
+         Smartphone = "phone",
+         Vertiefung = "crpr",
+         Größe = "height")
+a175
+```
+
+### Zusammenfassung Daten manipulieren
+
+Mit dem dyplr-Paket lassen sich Datensätze leicht verändern, wenn diese
+in einem tidydata-Format (tibble) vorliegen. Dazu sind alle
+Beobachtungen in einer Zeile, alle Variablen in den Spalten angelegt.
+
+Die wichtigsten Funktionen dafür sind:
+
+-   filter(): nach Zeilenwerte selektieren
+
+-   select(): einzelne Spalten selektieren
+
+-   group_by(): Teilgruppen nach bestimmten Variablen erstellen
+
+-   count(): Einzelne Fälle zählen
+
+-   summarize(): Fälle zusammenfassen
+
+-   rename(): Spalten umbenennen
+
+-   recode(): Werte umkodieren
+
+## Tidydata Tutor
+
+Eine ganz tolle Möglichkeit, sich die Funktionen vom tidyverse zu
+verdeutlichen bietet der
+[TidydataTutor](https://tidydatatutor.com/index.html). Hier lassen sich
+die einzelnen Schritte für die Datenmanipulation Schritt für Schritt
+nachvollziehen und so der eigene Umgang mit Code verbessern. Beispiel
+[Starwars](https://tidydatatutor.com/vis.html#code=library%28tidyverse%29%0A%0Astarwars%20%25%3E%25%20%0A%20%20select%28name,%20height,%20mass,%20species,%20gender%29%20%25%3E%25%20%0A%20%20drop_na%28height,%20mass,%20gender%29%20%25%3E%25%20%20%0A%20%20filter%28mass%20%3C%201000%29%20%25%3E%25%20%0A%20%20arrange%28desc%28height%29%29%20%20%25%3E%25%0A%20%20group_by%28gender%29%20%25%3E%25%0A%20%20summarize%28mean%28height%29%29%0A%20%20&d=2021-12-08&lang=r&v=v1)
